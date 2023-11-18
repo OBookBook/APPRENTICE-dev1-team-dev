@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: daily_report
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_password_kimetene
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+      - ./db/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 7090:80
