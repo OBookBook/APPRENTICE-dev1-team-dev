@@ -14,3 +14,7 @@ RUN composer global clear-cache
 # php_codesniffer を使うための環境構築
 RUN composer global require --no-interaction "squizlabs/php_codesniffer=*" && \
   composer require --dev --no-interaction squizlabs/php_codesniffer
+
+# Node.js のインストール
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
+  apt-get install -y nodejs
