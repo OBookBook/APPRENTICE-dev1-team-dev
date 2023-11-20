@@ -5,15 +5,24 @@ services:
     container_name: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: keep_up
       MYSQL_DATABASE: daily_report
       MYSQL_USER: db_user
-      MYSQL_PASSWORD: db_password_kimetene
+      MYSQL_PASSWORD: keep_up
     ports:
       - "3307:3306"
     volumes:
       - ./db:/docker-entrypoint-initdb.d
       - ./db/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
+  php:
+    build: ./
+    container_name: php
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - 9080:80
+    depends_on:
+      - db
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     container_name: phpmyadmin
@@ -21,4 +30,4 @@ services:
     depends_on:
       - db
     ports:
-      - 7090:80
+      - 9090:80
