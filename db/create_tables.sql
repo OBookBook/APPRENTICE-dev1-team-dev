@@ -5,7 +5,7 @@ CREATE TABLE users (
     user_id            BIGINT (20)              PRIMARY KEY  AUTO_INCREMENT,
     user_name          VARCHAR(255)             NOT NULL    UNIQUE,
     password           VARCHAR(30)              NOT NULL,
-    twitter_api_key    VARCHAR(255)             NOT NULL
+    twitter_api_key    VARCHAR(255)
 )   ENGINE=InnoDB      DEFAULT CHARSET=utf8mb4  COLLATE=utf8mb4_0900_ai_ci;
 
 -- タスクテーブル
