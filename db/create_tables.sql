@@ -26,6 +26,7 @@ CREATE TABLE reports (
     reflection_comment TEXT                     NOT NULL,
     ai_comment         TEXT                     NOT NULL,
     submitted_date     DATE                     NOT NULL,
+    study_hours        TIME                     NOT NULL,
                        FOREIGN KEY (user_id)    REFERENCES   users(user_id)
 )   ENGINE=InnoDB      DEFAULT CHARSET=utf8mb4  COLLATE=utf8mb4_0900_ai_ci;
 

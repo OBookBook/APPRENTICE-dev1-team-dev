@@ -17,15 +17,15 @@ INSERT INTO tasks (user_id, task_name, execution_date, completion_status, displa
 (2, 'Task 8', '2023-11-27', 0, 3);
 
 -- reportsテーブルのテストデータ挿入
-INSERT INTO reports (user_id, reflection_comment, ai_comment, submitted_date) VALUES
-(1, 'Reflection 1', 'AI Comment 1', '2023-11-20'),
-(1, 'Reflection 2', 'AI Comment 2', '2023-11-21'),
-(2, 'Reflection 3', 'AI Comment 3', '2023-11-22'),
-(2, 'Reflection 4', 'AI Comment 4', '2023-11-23'),
-(3, 'Reflection 5', 'AI Comment 5', '2023-11-24'),
-(3, 'Reflection 6', 'AI Comment 6', '2023-11-25'),
-(1, 'Reflection 7', 'AI Comment 7', '2023-11-26'),
-(2, 'Reflection 8', 'AI Comment 8', '2023-11-27');
+INSERT INTO reports (user_id, reflection_comment, ai_comment, submitted_date ,study_hours) VALUES
+(1, 'Reflection 1', 'AI Comment 1', '2023-11-20','04:30:00'),
+(1, 'Reflection 2', 'AI Comment 2', '2023-11-21','03:00:00'),
+(2, 'Reflection 3', 'AI Comment 3', '2023-11-22','06:00:00'),
+(2, 'Reflection 4', 'AI Comment 4', '2023-11-23','07:00:00'),
+(3, 'Reflection 5', 'AI Comment 5', '2023-11-24','03:00:00'),
+(3, 'Reflection 6', 'AI Comment 6', '2023-11-25','03:00:00'),
+(1, 'Reflection 7', 'AI Comment 7', '2023-11-26','05:00:00'),
+(2, 'Reflection 8', 'AI Comment 8', '2023-11-27','10:00:00');
 
 -- task_historyテーブルのテストデータ挿入
 INSERT INTO task_history (report_id, task_name, completion_status) VALUES
