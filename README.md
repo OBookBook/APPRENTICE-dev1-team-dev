@@ -41,3 +41,4 @@ composer install
 ```shell
 ./vendor/bin/phpcs --standard=PSR12 ./index.php
 ```
+
