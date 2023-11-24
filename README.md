@@ -12,7 +12,7 @@ docker-compose up -d
 
 ### web サーバが が正常に動いているか確認
 
-2. 以下の URL でアクセスできます：[http://localhost:9080/src/pages/](http://localhost:9080/src/pages/)
+2. 以下の URL でアクセスできます：[http://localhost:9080/src/php/pages/](http://localhost:9080/src/php/pages/)
 
 ### phpMyAdmin が正常に動いているか確認
 
