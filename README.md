@@ -39,5 +39,5 @@ composer install
 6. index.php を PSR-12 に従って静的解析するコマンドです。
 
 ```shell
-./vendor/bin/phpcs --standard=PSR12 ./index.php
+./vendor/bin/phpcs --standard=PSR12 ./src/php/pages/index.php
 ```

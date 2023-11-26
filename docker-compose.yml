@@ -18,6 +18,7 @@ services:
     build: ./
     container_name: php
     volumes:
+      - ./php.ini:/usr/local/etc/php/php.ini
       - ./:/var/www/html
     ports:
       - 9080:80
