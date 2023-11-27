@@ -9,7 +9,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Composer パッケージ管理する為の環境構築
 RUN apt-get update && \
-  apt-get install -y sudo git
+  apt-get install -y sudo git mariadb-client \
+  && docker-php-ext-install pdo_mysql
 # Composerの設定
 RUN echo 'export PATH="$PATH:/root/.composer/vendor/bin"' >> /root/.bashrc
 # Composerキャッシュのクリア
