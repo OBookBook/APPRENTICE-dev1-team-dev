@@ -1,12 +1,8 @@
 <?php
 
-namespace PHP\PAGES\HEADER;
+// namespace PHP\PAGES\HEADER;
 
-use mysqli;
-use RuntimeException;
-use PDO;
-
-phpinfo();
+// use PDO;
 function getHeader()
 {
 ?>
@@ -38,39 +34,19 @@ function getHeader()
           </span>
           <div>
             <?php
-            $dbHost = 'db';
-            $dbUsername = 'db_user';
-            $dbPassword = 'keep_up';
-            $dbDatabase = 'daily_report';
-            echo $dbHost . $dbUsername . $dbPassword . $dbDatabase;
-            $mysqli = new PDO('db', 'db_user', 'keep_up');
-            // $mysqli = new mysqli('db', 'db_user', 'keep_up', 'daily_report');
-            // if ($mysqli->connect_error) {
-            //   throw new RuntimeException('MySQL接続エラー:' . $mysqli->connect_error);
-            // }
-            // $dsn      = 'mysql:dbname=db_name;host=localhost';
-            // $user     = 'user_name';
-            // $password = 'password';
-
-            // // DBへ接続
-            // try {
-            //   $dbh = new PDO($dbHost, $dbUsername, $dbPassword);
-
-            //   // クエリの実行
-            //   $query = "SELECT * FROM TABLE_NAME";
-            //   $stmt = $dbh->query($query);
-
-            //   // 表示処理
-            //   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            //     echo $row["name"];
-            //   }
-            // } catch (PDOException $e) {
-            //   print("データベースの接続に失敗しました" . $e->getMessage());
-            //   die();
-            // }
-
-            // // 接続を閉じる
-            // $dbh = null;
+            require_once(__DIR__ . '/../functions/connectSql.php');
+            $dbh = connectSql();
+            // 仮に user_id が 1 のユーザーとして実装
+            $userId = 1;
+            // クエリの実行
+            $query = "SELECT user_name FROM users WHERE user_id = $userId";
+            $stmt = $dbh->query($query);
+            // 表示処理
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+              echo $row["user_name"];
+            }
+            // 接続を閉じる
+            $dbh = null;
             ?>
           </div>
         </div>
