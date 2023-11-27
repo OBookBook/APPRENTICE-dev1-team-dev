@@ -1,0 +1,20 @@
+{
+  "name": "apprentice-dev1",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "php",
+  "workspaceFolder": "/var/www/html",
+  "forwardPorts": [
+    9003
+  ],
+  "extensions": [
+    "xdebug.php-debug",
+    "bmewburn.vscode-intelephense-client",
+    "oderwat.indent-rainbow",
+    "streetsidesoftware.code-spell-checker",
+    "IBM.output-colorizer",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag"
+  ]
+}
