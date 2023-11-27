@@ -55,5 +55,4 @@ function getHeader()
 
   <?php
 }
-getHeader();
   ?>

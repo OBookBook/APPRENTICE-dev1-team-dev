@@ -12,7 +12,7 @@ function connectSql()
     $dbh = new PDO($dbn, $dbUser, $dbPassword);
     return $dbh;
   } catch (PDOException $e) {
-    print("データベースの接続に失敗しました" . $e->getMessage());
+    echo "データベースの接続に失敗しました" . $e->getMessage();
     die();
   }
 }

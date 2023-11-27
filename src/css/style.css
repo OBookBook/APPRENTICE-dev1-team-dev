@@ -111,3 +111,11 @@ nav ul li {
   font-size: 14px;
   text-align: center;
 }
+
+footer {
+  height: 50px;
+  background-color: #E7D9D8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
+<?php
+require_once(__DIR__ . '/header.php');
+require_once(__DIR__ . '/footer.php');
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>デイリポ</title>
-    <link rel="stylesheet" href="./../css/style.css">
-</head>
-
-<body>
-    <h1><?php echo "デイリポ開発!!" ?></h1>
-
-    <script src="./../js/main.js"></script>
-</body>
-
-</html>
+getHeader();
+?>
+<main>
+    <h1>デイリポ！</h1>
+</main>
+<?php
+getFooter();
+?>
