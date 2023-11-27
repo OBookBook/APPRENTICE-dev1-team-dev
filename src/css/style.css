@@ -1,3 +1,64 @@
-h1 {
-  color: red;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
 }
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+#root, #__next {
+  isolation: isolate;
+}
+/******************* reset *******************/
+
+
+/******************* common *******************/
+:root {
+  --text-size: 16px;
+  --noto-sans-jp: 'Noto Sans JP', sans-serif;
+  --text-color: #645353;
+  --border-color: #BAA;
+  --main-color: #FFAFAC;
+  --accent-color: #E5F3FF;
+  --main-bg-color: #F8F4F2;
+}
+
+body {
+  font-size: var(--text-size);
+  font-family: var(--noto-sans-jp);
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+/******************* common *******************/
+
+
+/*******************  *******************/
