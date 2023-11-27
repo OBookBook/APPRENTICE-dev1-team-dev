@@ -45,10 +45,15 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 body {
+  margin: 0 auto;
   font-size: var(--text-size);
   font-family: var(--noto-sans-jp);
   background-color: var(--main-bg-color);
   color: var(--text-color);
+}
+
+main {
+  max-width: 1240px;
 }
 
 ul {
@@ -61,4 +66,32 @@ li {
 /******************* common *******************/
 
 
-/*******************  *******************/
+/******************* header *******************/
+header {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #E7D9D8;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+.user-wrapper {
+  margin: 0 auto;
+}
+
+.user-wrapper span {
+  display: block;
+  text-align: center;
+}
