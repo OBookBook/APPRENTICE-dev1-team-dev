@@ -1,3 +1,121 @@
-h1 {
-  color: red;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+#root, #__next {
+  isolation: isolate;
+}
+/******************* reset *******************/
+
+
+/******************* common *******************/
+:root {
+  --text-size: 16px;
+  --noto-sans-jp: 'Noto Sans JP', sans-serif;
+  --text-color: #645353;
+  --border-color: #BAA;
+  --main-color: #FFAFAC;
+  --accent-color: #E5F3FF;
+  --main-bg-color: #F8F4F2;
+}
+
+body {
+  margin: 0 auto;
+  font-size: var(--text-size);
+  font-family: var(--noto-sans-jp);
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+}
+
+main {
+  max-width: 1240px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+/******************* common *******************/
+
+
+/******************* header *******************/
+header {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #E7D9D8;
+  padding: 0 30px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+.user-wrapper {
+  margin: 0 auto;
+}
+
+.user-wrapper span {
+  display: block;
+  text-align: center;
+}
+
+/* ユーザーアイコンの大きさ */
+.material-symbols-outlined {
+  font-size: 45px;
+}
+
+.user-wrapper div {
+  font-size: 14px;
+  text-align: center;
+}
+
+footer {
+  height: 50px;
+  background-color: #E7D9D8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
