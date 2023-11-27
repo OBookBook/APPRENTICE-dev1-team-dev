@@ -1,5 +1,9 @@
 FROM php:8.2-apache
 
+# Xdebug 環境構築
+RUN pecl install xdebug && \
+  docker-php-ext-enable xdebug
+
 # Docker 公式の Composer イメージ を使用
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
