@@ -35,7 +35,7 @@ getHeader();
             <p>【明日】AtCoder、チーム開発実装!!</p>
         </ul>
         <div id="js-capture-btn">
-            <button onclick="screenshot()">スクリーンショットを取得</button>
+            <button>スクリーンショットを取得</button>
         </div>
     </div>
 

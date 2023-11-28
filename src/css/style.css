@@ -120,6 +120,7 @@ footer {
   align-items: center;
 }
 
+/* 画像生成用  */
 .js-capture-style {
   width: 794px;   /* A4サイズ横幅 */
   height: 1123px; /* A4サイズ縦幅 */
