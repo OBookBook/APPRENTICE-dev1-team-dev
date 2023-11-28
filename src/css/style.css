@@ -119,3 +119,10 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+.js-capture-style {
+  width: 794px;   /* A4サイズ横幅 */
+  height: 1123px; /* A4サイズ縦幅 */
+  padding: 20px;
+  margin: 0 auto;
+}
