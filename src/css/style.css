@@ -54,6 +54,7 @@ body {
 
 main {
   max-width: 1240px;
+  margin: 0 auto;
 }
 
 ul {
@@ -119,3 +120,56 @@ footer {
   justify-content: center;
   align-items: center;
 }
+/******************* header *******************/
+
+
+/******************* calendar *******************/
+#cal-header {
+  margin: 20px 0 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+#cal-header button {
+  font-size: 1.5em;
+  background: none;
+  border:none;
+  margin: 0 2em;
+  padding: 0 1em;
+  cursor: pointer;
+}
+
+#cal-header button:hover {
+  background: #E7D9D8;
+  border-radius: 0.3em;
+}
+
+#calendar table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+#calendar table tbody {
+  margin: 0 auto;
+}
+#day-of-week {
+  background-color: var(--main-color);
+}
+
+#day-of-week th {
+  border: 2px solid var(--border-color);
+}
+
+#week td {
+  border: 2px solid var(--border-color);
+  padding: 0.5vw 7vw 4vw 0.5vw;
+}
+
+#week td:first-child {
+  color: red;
+}
+
+#week td:last-child {
+  color: royalblue;
+}
+/******************* calendar *******************/
