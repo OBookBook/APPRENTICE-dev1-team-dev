@@ -2,6 +2,7 @@
 function getFooter()
 {
 ?>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   <script src="../../js/main.js" type="module"></script>
 
   <footer>
