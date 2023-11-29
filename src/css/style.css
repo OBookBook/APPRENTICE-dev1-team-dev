@@ -41,7 +41,8 @@ p, h1, h2, h3, h4, h5, h6 {
   --border-color: #BAA;
   --main-color: #FFAFAC;
   --accent-color: #E5F3FF;
-  --main-bg-color: #F8F4F2;
+  --main-bg-color: #FFFDF9;
+  --tasks-bg-color: #F8F4F2;;
 }
 
 body {
@@ -54,6 +55,12 @@ body {
 
 main {
   max-width: 1240px;
+  margin: 0 auto;
+  min-height: 80vh;
+}
+
+h2 {
+  font-size: calc( 24 / var(--root-font-size) * 1rem ); /*24px*/
 }
 
 ul {
@@ -104,11 +111,11 @@ nav ul li {
 
 /* ユーザーアイコンの大きさ */
 .material-symbols-outlined {
-  font-size: 45px;
+  font-size: calc( 40 / var(--root-font-size) * 1rem ); /*45px*/
 }
 
 .user-wrapper div {
-  font-size: 14px;
+  font-size: calc( 20 / var(--root-font-size) * 1rem ); /*20px*/
   text-align: center;
 }
 
@@ -118,4 +125,75 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+/******************* task-management *******************/
+#task-management {
+  width: 40vw;
+  max-width: 500px;
+  margin: 3rem;
+}
+
+#task-management h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#task-management h2 span {
+  border-bottom: 5px solid var(--main-color);
+}
+
+.task-list {
+  margin-bottom: .5rem;
+  padding: .2rem .5rem;
+  background-color: var(--tasks-bg-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-list input {
+  margin-right: 0.3rem;
+}
+
+.checkbox {
+  accent-color: var(--main-color);
+}
+
+/* ゴミ箱アイコン */
+.delete-icon {
+  font-size: calc( 16 / var(--root-font-size) * 1rem ); /*16px*/
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.add_task_form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.input_task {
+  border: none;
+  width: 100%;
+  background-color: rgba(255, 255, 255, .6);
+  outline: none;
+  margin-left: 20px;
+  color: var(--text-color);
+}
+
+.add_task_btn {
+  width: calc( 20 / var(--root-font-size) * 1rem ); /*20px*/
+  height: calc( 20 / var(--root-font-size) * 1rem ); /*20px*/;
+  font-size: 12px;
+  border-radius: 50%;
+  border: var(--border-color);
+  background-color: var(--main-color);
+  margin: 0 8px;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-color);
+  font-weight: bold;
 }
