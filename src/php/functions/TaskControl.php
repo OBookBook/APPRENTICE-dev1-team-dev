@@ -69,4 +69,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   }
 }
-header("Location: ../pages/task-management.php");
+header("Location: ../pages/index.php");

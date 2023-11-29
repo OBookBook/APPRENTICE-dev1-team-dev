@@ -35,7 +35,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /******************* common *******************/
 :root {
-  --text-size: 16px;
+  --root-font-size: 16;
   --noto-sans-jp: 'Noto Sans JP', sans-serif;
   --text-color: #645353;
   --border-color: #BAA;
@@ -47,7 +47,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 body {
   margin: 0 auto;
-  font-size: var(--text-size);
+  font-size: var(--root-font-size);
   font-family: var(--noto-sans-jp);
   background-color: var(--main-bg-color);
   color: var(--text-color);
@@ -239,7 +239,7 @@ footer {
 
 .add_task_btn {
   width: calc( 20 / var(--root-font-size) * 1rem ); /*20px*/
-  height: calc( 20 / var(--root-font-size) * 1rem ); /*20px*/;
+  height: calc( 20 / var(--root-font-size) * 1rem ); /*20px*/
   font-size: 12px;
   border-radius: 50%;
   border: var(--border-color);
