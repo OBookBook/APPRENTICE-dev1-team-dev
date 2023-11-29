@@ -16,7 +16,7 @@ class Screenshot {
       // await を追加して Promise を待つ
       const canvas = await html2canvas(elementToCapture);
       const imgData = canvas.toDataURL('image/png');
-      const response = await fetch('save_image.php', {
+      const response = await fetch('../../php/functions/post_image.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
