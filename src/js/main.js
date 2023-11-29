@@ -1,1 +1,3 @@
-console.log("デイリポ開発!!");
+import { createCalender } from "./calendar.js";
+
+createCalender();
