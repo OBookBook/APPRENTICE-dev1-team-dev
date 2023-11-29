@@ -15,13 +15,12 @@ getHeader();
     if ($conn) {
         echo "データベースに接続しました。";
         echo "接続が成功したらクエリを実行したり他の処理を行います";
-
         $database->disconnect();
     } else {
     }
     ?>
 
-    <h3>実績 ※ </h3>
+    <h3>本日の実績</h3>
     <div id="js-capture">
         <h1>📅 日付:11 月 26 日(日)</h1>
         <p>⌚ 学習時間 10 時間</p>
@@ -34,11 +33,10 @@ getHeader();
             <li>✅ 本 : これからはじめる React 実践入門</li>
             <p>【明日】AtCoder、チーム開発実装!!</p>
         </ul>
-        <div id="js-capture-btn">
-            <button>スクリーンショットを取得</button>
-        </div>
     </div>
-
+    <!-- ボタンの名前、いい感じの名前にして頂けたら幸いです。。。長過ぎますよね -->
+    <button id="js-captureGet-btn">日報ダウンロード</button>
+    <button id="js-captureTweet-btn">twitterに日報画像付きでシェア</button>
 </main>
 
 <?php getFooter(); ?>

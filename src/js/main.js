@@ -1,7 +1,11 @@
-console.log("デイリポ開発!!");
+const screenshot = new Screenshot();
 
-// 画像生成
-document.getElementById('js-capture-btn').addEventListener('click', function() {
-  const screenshot = new Screenshot();
+// 本日の日報を端末にダウンロード
+document.getElementById('js-captureGet-btn').addEventListener('click', function() {
+  screenshot.get();
+});
+
+// twitterに日報画像付きでシェア
+document.getElementById('js-captureTweet-btn').addEventListener('click', function() {
   screenshot.capture();
 });
