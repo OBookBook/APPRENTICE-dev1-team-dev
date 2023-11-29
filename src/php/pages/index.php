@@ -1,7 +1,10 @@
 <?php
 require_once(__DIR__ . '/header.php');
 require_once(__DIR__ . '/footer.php');
+require_once './../classes/TimeSelectorBox.php';
 getHeader();
+
+$timeSelectorBox = new TimeSelectorBox();
 ?>
 
 <main>
@@ -34,6 +37,18 @@ getHeader();
             <p>【明日】AtCoder、チーム開発実装!!</p>
         </ul>
     </div>
+
+    <form id="reportForm">
+        <label for="reflectionComment">本日の振り返りを記入</label>
+        <textarea id="reflectionComment" name="reflectionComment"></textarea><br>
+        <label for="studyHours">学習時間:</label>
+        <select id="studyHours" name="studyHours">
+            <?php echo $timeSelectorBox->generateOptions(); ?>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+
+
     <!-- ボタンの名前、いい感じの名前にして頂けたら幸いです。。。長過ぎますよね -->
     <button id="js-captureGet-btn">日報ダウンロード</button>
     <button id="js-captureTweet-btn">twitterに日報画像付きでシェア</button>
