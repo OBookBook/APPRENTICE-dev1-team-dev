@@ -2,5 +2,13 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7",
         "phpunit/phpunit": "*"
+    },
+    "require": {
+        "abraham/twitteroauth": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+        "Abraham\\TwitterOAuth\\": "src"
+        }
     }
 }
