@@ -1,8 +1,5 @@
 <?php
 
-// namespace PHP\PAGES\HEADER;
-
-// use PDO;
 function getHeader()
 {
 ?>
