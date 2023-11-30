@@ -15,6 +15,12 @@ document.getElementById('js-captureTweet-btn').addEventListener('click', functio
     screenshot.capture();
 });
 
-const reportHandler = new ReportFormHandler();
 // 本日の実績登録イベント
+const reportHandler = new ReportFormHandler();
 document.getElementById('reportForm').addEventListener('submit', reportHandler.handleSubmit);
+
+// コピペクリックイベント
+document.getElementById('js-copy-btn').addEventListener('click', function() {
+    const clipboard = new Clipboard();
+    clipboard.copyToClipboard('copyTarget');
+});
