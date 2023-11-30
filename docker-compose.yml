@@ -4,11 +4,8 @@ services:
     image: mysql:8.0
     container_name: mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: keep_up
-      MYSQL_DATABASE: daily_report
-      MYSQL_USER: db_user
-      MYSQL_PASSWORD: keep_up
+    env_file:
+      - ./.env
     ports:
       - "3307:3306"
     volumes:

@@ -1,11 +1,16 @@
 <?php
 
+require __DIR__ . '/../../../vendor/autoload.php';
+
 function connectSql()
 {
-  $dbHost = 'mysql';
-  $dbUser = 'db_user';
-  $dbPassword = 'keep_up';
-  $dbDatabase = 'daily_report';
+  $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../../");
+  $dotenv->load();
+
+  $dbHost = $_ENV['MYSQL_HOST'];
+  $dbUser = $_ENV['MYSQL_USER'];
+  $dbPassword = $_ENV['MYSQL_ROOT_PASSWORD'];
+  $dbDatabase = $_ENV['MYSQL_DATABASE'];
   $dbn = "mysql:host=$dbHost;dbname=$dbDatabase";
 
   try {
