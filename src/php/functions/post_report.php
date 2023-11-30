@@ -1,5 +1,4 @@
 <?php
-require_once './../constants.php';
 require_once './../classes/Database.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
