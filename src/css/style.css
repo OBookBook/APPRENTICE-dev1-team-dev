@@ -171,12 +171,25 @@ footer {
   padding: 0.5vw 7vw 4vw 0.5vw;
 }
 
-#week td:first-child {
+#week td:hover:not(.disabled) {
+  background-color: #E7D9D8;
+  cursor: pointer;
+}
+
+.date:first-child {
   color: red;
 }
 
-#week td:last-child {
+.date:last-child {
   color: royalblue;
+}
+
+.selected {
+  background-color: #E7D9D8;
+}
+
+.disabled {
+  opacity: 0.3;
 }
 /******************* calendar *******************/
 
