@@ -1,7 +1,8 @@
 {
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7",
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "vlucas/phpdotenv": "^5.5"
     },
     "require": {
         "abraham/twitteroauth": "^6.2"
@@ -10,5 +11,8 @@
         "psr-4": {
         "Abraham\\TwitterOAuth\\": "src"
         }
+    },
+    "scripts": {
+        "phpcs": "./vendor/bin/phpcs --standard=phpcs.xml"
     }
 }

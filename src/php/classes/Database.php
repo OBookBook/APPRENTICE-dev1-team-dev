@@ -1,5 +1,5 @@
 <?php
-require_once './../constants.php';
+require './../../../vendor/autoload.php';
 
 class Database
 {
@@ -11,10 +11,13 @@ class Database
 
     public function __construct()
     {
-        $this->host = DB_HOST;
-        $this->dbname = DB_NAME;
-        $this->username = DB_USER;
-        $this->password = DB_PASS;
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../../");
+        $dotenv->load();
+
+        $this->host = $_ENV['MYSQL_HOST'];
+        $this->dbname = $_ENV['MYSQL_DATABASE'];
+        $this->username = $_ENV['MYSQL_USER'];
+        $this->password = $_ENV['MYSQL_ROOT_PASSWORD'];
     }
 
     /**
