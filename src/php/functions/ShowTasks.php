@@ -53,13 +53,28 @@ function getTaskList($jsonData)
   $stmt->bindValue(':date', $date, PDO::PARAM_STR);
   $stmt->execute();
 
-  $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $taskList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  $query = <<<EOT
+  SELECT *
+    FROM reports
+  WHERE user_id=:user_id
+    AND submitted_date=:date
+  EOT;
+
+  $stmt2 = $dbh->prepare($query);
+  $stmt2->bindValue(':user_id', $userId, PDO::PARAM_INT);
+  $stmt2->bindValue(':date', $date, PDO::PARAM_STR);
+  $stmt2->execute();
+
+  $report = $stmt2->fetch(PDO::FETCH_ASSOC);
 
   $dbh = null;
 
   $response = [
     "error" => "OK",
-    "taskList" => $data,
+    "taskList" => $taskList,
+    "report" => $report,
   ];
 
   echo json_encode($response);

@@ -104,13 +104,13 @@ export class Calendar {
           behavior: "smooth",
         });
 
-        showTaskList(date);
+        this.showContents(date);
       });
     });
   }
 
-  // タスク一覧の表示
-  showTaskList(execution_date) {
+  // タスク一覧とレポートの表示
+  showContents(execution_date) {
     const UL_OF_TASK_LIST = document.querySelector(".task-lists");
     UL_OF_TASK_LIST.innerHTML = "";
     let userId = 1; // 仮にユーザー１とする
@@ -125,8 +125,10 @@ export class Calendar {
       })
       .then((response) => {
         let taskList = response.data.taskList;
+        let report = response.data.report;
 
-        createList(taskList);
+        this.createList(taskList);
+        // this.createReport(report);
       })
       .catch((error) => {
         console.log(error);
