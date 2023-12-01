@@ -33,8 +33,7 @@ function showTasks($userId, $date)
   foreach ($tasks as $task) {
 ?>
     <li class="task-list">
-      <form class="checkbox_form" method="POST" action="../functions/TaskControl.php">
-        <input type="hidden" name="form_id" value="get_task">
+      <form class="checkbox_form">
         <?php if ($task["completion_status"] === 0) : ?>
           <input class="checkbox" type="checkbox" name="<?php echo $task["task_id"]; ?>">
         <?php else : ?>
@@ -44,8 +43,7 @@ function showTasks($userId, $date)
       <div class="task_name">
         <?php echo $task["task_name"]; ?>
       </div>
-      <form class="submit_form" method="POST" action="../functions/TaskControl.php">
-        <input type="text" name="form_id" value="delete_task" hidden>
+      <form class="delete_form">
         <input type="text" name="delete_task_id" value="<?php echo $task["task_id"]; ?>" hidden>
         <label>
           <span class="delete-icon material-symbols-outlined">delete</span>

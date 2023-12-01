@@ -60,7 +60,7 @@ main {
 }
 
 h2 {
-  font-size: calc( 24 / var(--root-font-size) * 1rem ); /*24px*/
+  font-size: calc( 20 / var(--root-font-size) * 1rem ); /*24px*/
 }
 
 ul {
@@ -294,3 +294,4 @@ footer {
   align-items: center;
 }
 /******************* footer *******************/
+
