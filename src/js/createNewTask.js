@@ -68,7 +68,7 @@ export function createNewTask() {
 
       axios
         .post("http://localhost:9080/src/php/functions/insertTask.php", {
-          newTask,
+          newTask: newTask,
         })
         .then((response) => {
           let error = response.data.error;
