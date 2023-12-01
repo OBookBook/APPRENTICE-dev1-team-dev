@@ -56,11 +56,11 @@ body {
 main {
   max-width: 1240px;
   margin: 0 auto;
-  min-height: 80vh;
+  min-height: 89vh;
 }
 
 h2 {
-  font-size: calc( 24 / var(--root-font-size) * 1rem ); /*24px*/
+  font-size: calc( 20 / var(--root-font-size) * 1rem ); /*24px*/
 }
 
 ul {
@@ -80,11 +80,15 @@ a {
 
 /******************* header *******************/
 header {
-  height: 80px;
+  height: 6vh;
   display: flex;
   justify-content: space-between;
   background-color: #E7D9D8;
   padding: 0 30px;
+}
+
+h1 img {
+  max-height: 100%;
 }
 
 .header-right {
@@ -111,27 +115,20 @@ nav ul li {
 
 /* ユーザーアイコンの大きさ */
 .material-symbols-outlined {
-  font-size: calc( 40 / var(--root-font-size) * 1rem ); /*45px*/
+  font-size: calc( 30 / var(--root-font-size) * 1rem ); /*30px*/
 }
 
 .user-wrapper div {
-  font-size: calc( 20 / var(--root-font-size) * 1rem ); /*20px*/
+  font-size: calc( 14 / var(--root-font-size) * 1rem ); /*14px*/
   text-align: center;
-}
-
-footer {
-  height: 50px;
-  background-color: #E7D9D8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 /******************* header *******************/
 
 
 /******************* calendar *******************/
 #cal-header {
-  margin: 20px 0 10px 0;
+  margin-bottom: 10px;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -219,13 +216,30 @@ footer {
   align-items: center;
 }
 
-.task-list input {
-  margin-right: 0.3rem;
+.task-list:last-of-type {
+  margin-bottom: 0;
+}
+
+.checkbox_form {
+  width: 2%;
+  min-width: 15px;
 }
 
 .checkbox {
   accent-color: var(--main-color);
 }
+
+.task_name {
+  width: 80%;
+  overflow-wrap: anywhere;
+}
+
+.submit_form {
+  width: 8%;
+  min-width: 20px;
+}
+
+
 
 /* ゴミ箱アイコン */
 .delete-icon {
@@ -263,4 +277,35 @@ footer {
   color: var(--text-color);
   font-weight: bold;
 }
+
+.add_task_btn.disabled {
+  opacity: .8;
+}
+
+.add_task_btn.enabled {
+  opacity: 1;
+}
+
+.feed_back.is_success {
+  display: none;
+}
+
+.feed_back.is_error {
+  font-size: .8rem;
+  color: #5ab2ff;
+  margin-left: 25px;
+}
 /******************* task-management *******************/
+
+
+
+/******************* footer *******************/
+footer {
+  height: 5vh;
+  background-color: #E7D9D8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/******************* footer *******************/
+
