@@ -1,6 +1,6 @@
 import { addCheckStatusListener } from "./changeStatus.js";
 
-export function validate() {
+export function createNewTask() {
   const INPUT = document.querySelector(".input_task");
   const ADD_TASK_BTN = document.querySelector(".add_task_btn");
   const ADD_TASK_BTN_INNER = document.querySelector(".add_task_btn_inner");
@@ -55,7 +55,7 @@ export function validate() {
     });
   }
 
-  function sendNewTask() {
+  function showNewTask() {
     FORM.addEventListener("submit", async (e) => {
       e.preventDefault();
       console.log("submit");
@@ -67,7 +67,7 @@ export function validate() {
       task.value = "";
 
       axios
-        .post("http://localhost:9080/src/php/functions/TaskControl.php", {
+        .post("http://localhost:9080/src/php/functions/insertTask.php", {
           newTask,
         })
         .then((response) => {
@@ -80,23 +80,19 @@ export function validate() {
             let list = document.createElement("li");
             list.classList.add("task-list");
             list.innerHTML = `
-          <div>
-          <form method="POST" action="../functions/TaskControl.php">
-            <input type="hidden" name="form_id" value="get_task">
+          <form class="checkbox_form">
             <input class="checkbox newCheckbox" type="checkbox" name="${newTaskId}">
-            <span>
-            ${newTask}
-            </span>
           </form>
-        </div>
-        <form method="POST" action="../functions/TaskControl.php">
-          <input type="text" name="form_id" value="delete_task" hidden>
-          <input type="text" name="delete_task_id" value="${newTaskId}" hidden>
-          <label>
-            <span class="delete-icon material-symbols-outlined">delete</span>
-            <button type="submit" name="delete-btn" hidden>
-          </label>
-        </form>
+          <div class="task_name">
+            ${newTask}
+          </div>
+          <form class="delete_form">
+            <input type="text" name="delete_task_id" value="${newTaskId}" hidden>
+            <label>
+              <span class="delete-icon material-symbols-outlined">delete</span>
+              <button type="submit" name="delete-btn" hidden>
+            </label>
+          </form>
           `;
 
             LIST_TO_ADD_TASK.parentElement.insertBefore(list, LIST_TO_ADD_TASK);
@@ -117,5 +113,5 @@ export function validate() {
   checkLength();
   activateSubmitBtn();
   showErrorMessage();
-  sendNewTask();
+  showNewTask();
 }

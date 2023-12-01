@@ -13,7 +13,8 @@ function validate($inputTask)
   return $error;
 }
 
-function getInputTask($userId, $date, $taskName)
+
+function insertTask($userId, $date, $taskName)
 {
   $inputTask = ($taskName);
   $error = validate($inputTask);
@@ -80,46 +81,22 @@ function getInputTask($userId, $date, $taskName)
 }
 
 
-function deleteTask()
-{
-  $taskId = $_POST['delete_task_id'];
+// jsonデータの取得
+$rawData = file_get_contents("php://input");
 
-  $dbh = connectSql();
+if (!empty($rawData)) {
+  $jsonData = json_decode($rawData, true);
 
-  $query = <<<EOT
-      DELETE FROM tasks
-      WHERE task_id = :taskId
-  EOT;
+  if ($jsonData !== null) {
 
-  $stmt = $dbh->prepare($query);
-  $stmt->bindParam(':taskId', $taskId, PDO::PARAM_INT);
-  $stmt->execute();
-
-  $dbh = null;
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-  if (isset($_POST['form_id'])) {
-
-    if ($_POST['form_id'] === 'delete_task') {
-
-      deleteTask();
-      header("Location: ../pages/index.php");
-    } else {
-      exit;
-    }
-  } else {
-    $rawData = file_get_contents("php://input");
-
-    if (!empty($rawData)) {
-      $jsonData = json_decode($rawData, true);
-
-      if ($jsonData !== null) {
-        $taskName = $jsonData['newTask'];
-        getInputTask(1, '2023-11-20', $taskName);
-      }
+    if (array_key_exists('newTask', $jsonData)) {
+      $taskName = $jsonData['newTask'];
+      insertTask(1, '2023-11-20', $taskName);
     }
   }
+  echo json_encode(["error" => "データがありません"]);
+  exit;
+} else {
+  echo json_encode(["error" => "データがありません"]);
+  exit;
 }
