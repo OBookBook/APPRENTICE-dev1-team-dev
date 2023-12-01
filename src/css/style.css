@@ -262,3 +262,8 @@ footer {
   margin: 0 auto;
   background-color: #F8F4F2;
 }
+
+/* twitter投稿文字カウントエラー  */
+.js-over-limit {
+  color: red;
+}

@@ -24,3 +24,9 @@ document.getElementById('js-copy-btn').addEventListener('click', function() {
     const clipboard = new Clipboard();
     clipboard.copyToClipboard('copyTarget');
 });
+
+// twitterボタンクリックイベント
+document.getElementById('js-twitter-btn').addEventListener('click', function() {
+    const twitterShare = new TwitterShare();
+    twitterShare.openDialog();
+});

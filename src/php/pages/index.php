@@ -66,6 +66,7 @@ $timeSelectorBox = new TimeSelectorBox();
     <button id="js-captureGet-btn">日報ダウンロード</button>
     <button id="js-captureTweet-btn">twitter 改造中、php/outputフォルダ内に格納されるのみです</button>
     <button id="js-copy-btn">コピペボタン</button>
+    <button id="js-twitter-btn">Twitterにシェア</button>
   </section>
 </main>
 
