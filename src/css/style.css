@@ -206,6 +206,10 @@ footer {
   align-items: center;
 }
 
+.task-list:last-of-type {
+  margin-bottom: 0;
+}
+
 .task-list input {
   margin-right: 0.3rem;
 }
@@ -249,5 +253,23 @@ footer {
   cursor: pointer;
   color: var(--text-color);
   font-weight: bold;
+}
+
+.add_task_btn.disabled {
+  opacity: .8;
+}
+
+.add_task_btn.enabled {
+  opacity: 1;
+}
+
+.feed_back.is_success {
+  display: none;
+}
+
+.feed_back.is_error {
+  font-size: .8rem;
+  color: #5ab2ff;
+  margin-left: 25px;
 }
 /******************* task-management *******************/

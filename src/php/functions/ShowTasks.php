@@ -41,7 +41,9 @@ function showTasks($userId, $date)
           <?php else : ?>
             <input class="checkbox" type="checkbox" name="<?php echo $task["task_id"]; ?>" checked>
           <?php endif; ?>
-          <?php echo $task["task_name"]; ?>
+          <span>
+            <?php echo $task["task_name"]; ?>
+          </span>
         </form>
       </div>
       <form method="POST" action="../functions/TaskControl.php">
