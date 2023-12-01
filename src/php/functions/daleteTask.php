@@ -20,7 +20,7 @@ if (!empty($rawData)) {
   }
 } else {
   $response = [
-    "error" => "error3:データがありません",
+    "error" => "error2:データがありません",
     "deletedTaskId" => $deleteTaskId
   ];
   echo json_encode($response);
