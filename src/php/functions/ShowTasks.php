@@ -33,18 +33,18 @@ function showTasks($userId, $date)
   foreach ($tasks as $task) {
 ?>
     <li class="task-list">
-      <div>
-        <form method="POST" action="../functions/TaskControl.php">
-          <input type="hidden" name="form_id" value="get_task">
-          <?php if ($task["completion_status"] === 0) : ?>
-            <input class="checkbox" type="checkbox" name="<?php echo $task["task_id"]; ?>">
-          <?php else : ?>
-            <input class="checkbox" type="checkbox" name="<?php echo $task["task_id"]; ?>" checked>
-          <?php endif; ?>
-          <?php echo $task["task_name"]; ?>
-        </form>
+      <form class="checkbox_form" method="POST" action="../functions/TaskControl.php">
+        <input type="hidden" name="form_id" value="get_task">
+        <?php if ($task["completion_status"] === 0) : ?>
+          <input class="checkbox" type="checkbox" name="<?php echo $task["task_id"]; ?>">
+        <?php else : ?>
+          <input class="checkbox" type="checkbox" name="<?php echo $task["task_id"]; ?>" checked>
+        <?php endif; ?>
+      </form>
+      <div class="task_name">
+        <?php echo $task["task_name"]; ?>
       </div>
-      <form method="POST" action="../functions/TaskControl.php">
+      <form class="submit_form" method="POST" action="../functions/TaskControl.php">
         <input type="text" name="form_id" value="delete_task" hidden>
         <input type="text" name="delete_task_id" value="<?php echo $task["task_id"]; ?>" hidden>
         <label>

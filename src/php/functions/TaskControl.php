@@ -2,42 +2,81 @@
 
 require_once(__DIR__ . '/../functions/connectSql.php');
 
-function getInputTask($userId, $date)
+function validate($inputTask)
 {
-  $inputTask = $_POST['input_task'];
+  $error = "OK";
+  if (!strlen($inputTask)) {
+    $error = 'タスク名を入力してください';
+  } elseif (strlen($inputTask) > 255) {
+    $error = '255文字で入力してください';
+  }
+  return $error;
+}
 
-  $dbh = connectSql();
+function getInputTask($userId, $date, $taskName)
+{
+  $inputTask = ($taskName);
+  $error = validate($inputTask);
+  $response = [];
 
-  $query = <<<EOT
-  INSERT INTO tasks
-    (user_id,
-    task_name,
-    execution_date,
-    completion_status,
-    display_order)
-  VALUES
-    (:userId,
-    :task,
-    :date,
-    0,
-    (SELECT (MAX(display_order) + 1)
-      FROM tasks as t
-    WHERE t.user_id = :userId))
-EOT;
+  if ($error === "OK") {
+    $inputTask = nl2br(htmlspecialchars($inputTask));
 
-  $stmt = $dbh->prepare($query);
-  $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-  $stmt->bindParam(':date', $date, PDO::PARAM_STR);
-  $stmt->bindParam(':task', $inputTask, PDO::PARAM_STR);
-  $stmt->execute();
+    $dbh = connectSql();
 
-  $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $query = <<<EOT
+    INSERT INTO tasks
+      (user_id,
+      task_name,
+      execution_date,
+      completion_status,
+      display_order)
+    VALUES
+      (:userId,
+      :taskName,
+      :date,
+      0,
+      (SELECT (MAX(display_order) + 1)
+        FROM tasks as t
+      WHERE t.user_id = :userId))
+  EOT;
 
-  $dbh = null;
+    $stmt = $dbh->prepare($query);
+    $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+    $stmt->bindParam(':taskName', $inputTask, PDO::PARAM_STR);
+    $stmt->execute();
 
-  return $tasks;
+    $query = <<<EOT
+    SELECT MAX(task_id) as newTaskId FROM tasks
+    WHERE user_id = :userId
+      AND task_name = :taskName
+      AND execution_date = :date
+  EOT;
 
-  echo $inputTask;
+    $stmt2 = $dbh->prepare($query);
+    $stmt2->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $stmt2->bindParam(':date', $date, PDO::PARAM_STR);
+    $stmt2->bindParam(':taskName', $inputTask, PDO::PARAM_STR);
+    $stmt2->execute();
+
+    $data = $stmt2->fetch(PDO::FETCH_ASSOC);
+    $newTaskId = $data["newTaskId"];
+
+    $dbh = null;
+
+    $response = [
+      "error" => $error,
+      "newTaskId" => $newTaskId
+    ];
+  } else {
+    $response = [
+      "error" => $error,
+      "newTaskId" => "",
+    ];
+  }
+  echo json_encode($response);
+  exit;
 }
 
 
@@ -61,12 +100,26 @@ function deleteTask()
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
   if (isset($_POST['form_id'])) {
+
     if ($_POST['form_id'] === 'delete_task') {
+
       deleteTask();
-    } elseif ($_POST['form_id'] === 'input_task') {
-      getInputTask(1, '2023-11-20');
+      header("Location: ../pages/index.php");
+    } else {
+      exit;
+    }
+  } else {
+    $rawData = file_get_contents("php://input");
+
+    if (!empty($rawData)) {
+      $jsonData = json_decode($rawData, true);
+
+      if ($jsonData !== null) {
+        $taskName = $jsonData['newTask'];
+        getInputTask(1, '2023-11-20', $taskName);
+      }
     }
   }
 }
-header("Location: ../pages/index.php");
