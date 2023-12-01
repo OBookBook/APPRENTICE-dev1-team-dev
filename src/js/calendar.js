@@ -85,6 +85,9 @@ export class Calendar {
           selected.classList.remove('selected');
         }
         e.classList.add('selected');
+        const yearMonth = document.getElementById('year-month').innerHTML.split('/');
+        const date = yearMonth[0] + '-' + yearMonth[1] + '-' + e.innerHTML; // 出力例:2023-12-3
+        console.log(date);
         // タスク一覧までページをスクロール
         document.getElementById('task-management').scrollIntoView({
           behavior: 'smooth',
