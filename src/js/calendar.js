@@ -108,38 +108,37 @@ export class Calendar {
       });
     });
   }
-}
 
-// タスク一覧の表示
-function showTaskList(execution_date) {
-  const UL_OF_TASK_LIST = document.querySelector(".task-lists");
-  UL_OF_TASK_LIST.innerHTML = "";
-  let userId = 1; // 仮にユーザー１とする
+  // タスク一覧の表示
+  showTaskList(execution_date) {
+    const UL_OF_TASK_LIST = document.querySelector(".task-lists");
+    UL_OF_TASK_LIST.innerHTML = "";
+    let userId = 1; // 仮にユーザー１とする
 
-  console.log("userId:" + userId);
-  console.log("execution_date:" + execution_date);
+    console.log("userId:" + userId);
+    console.log("execution_date:" + execution_date);
 
-  return axios
-    .post("http://localhost:9080/src/php/functions/ShowTasks.php", {
-      userId: userId,
-      execution_date: execution_date,
-    })
-    .then((response) => {
-      let taskList = response.data.taskList;
+    return axios
+      .post("http://localhost:9080/src/php/functions/ShowTasks.php", {
+        userId: userId,
+        execution_date: execution_date,
+      })
+      .then((response) => {
+        let taskList = response.data.taskList;
 
-      createList(taskList);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
+        createList(taskList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
-// タスク一覧のHTML生成
-function createList(taskList) {
-  const UL_OF_TASK_LIST = document.querySelector(".task-lists");
-  if (taskList.length) {
-    for (let i = 0; i < taskList.length; i++) {
-      UL_OF_TASK_LIST.innerHTML += `
+  // タスク一覧のHTML生成
+  createList(taskList) {
+    const UL_OF_TASK_LIST = document.querySelector(".task-lists");
+    if (taskList.length) {
+      for (let i = 0; i < taskList.length; i++) {
+        UL_OF_TASK_LIST.innerHTML += `
       <li class="task-list">
         <form class="checkbox_form">
           <input class="checkbox" type="checkbox" name="${taskList[i].task_id}">
@@ -156,14 +155,14 @@ function createList(taskList) {
         </form>
       </li>`;
 
-      if (taskList[i]["completion_status"] === 1) {
-        let checkboxes = document.querySelectorAll(".checkbox");
-        let lastCheckbox = checkboxes[checkboxes.length - 1];
-        lastCheckbox.setAttribute("checked", true);
+        if (taskList[i]["completion_status"] === 1) {
+          let checkboxes = document.querySelectorAll(".checkbox");
+          let lastCheckbox = checkboxes[checkboxes.length - 1];
+          lastCheckbox.setAttribute("checked", true);
+        }
       }
-    }
 
-    UL_OF_TASK_LIST.innerHTML += `
+      UL_OF_TASK_LIST.innerHTML += `
     <li class="task-list list_to_add_task">
     <form class="add_task_form">
       <input type="hidden" name="form_id" value="input_task">
@@ -172,8 +171,8 @@ function createList(taskList) {
     </form>
   </li>
   <div class="feed_back"></div>`;
-  } else {
-    UL_OF_TASK_LIST.innerHTML += `
+    } else {
+      UL_OF_TASK_LIST.innerHTML += `
     <li class="task-list list_to_add_task">
     <form class="add_task_form">
       <input type="hidden" name="form_id" value="input_task">
@@ -182,5 +181,6 @@ function createList(taskList) {
     </form>
   </li>
   <div class="feed_back"></div>`;
+    }
   }
 }
