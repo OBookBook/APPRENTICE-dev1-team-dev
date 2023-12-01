@@ -10,7 +10,7 @@ getHeader();
   <div id="calendar-wrapper">
     <div id="cal-header">
       <button id="prev">&lt;</button>
-      <h2 id="month-date"></h2>
+      <h2 id="year-month"></h2>
       <button id="next">&gt;</button>
     </div>
     <div id="calendar"></div>
