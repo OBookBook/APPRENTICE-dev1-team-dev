@@ -138,8 +138,12 @@ nav ul li {
   justify-content: center;
 }
 
+#cal-header h2{
+  font-size: 2rem;
+}
+
 #cal-header button {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   background: none;
   border:none;
   margin: 0 2em;

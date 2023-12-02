@@ -19,6 +19,9 @@ export class CreatePieChart {
             legend: {
               display: false,
             },
+            tooltip: {
+              enabled: false,
+            },
           },
         },
       });

@@ -105,10 +105,9 @@ export class Calendar {
         }
         e.classList.add("selected");
         const yearMonth = document.getElementById("year-month").innerHTML.split("/");
-        const date = yearMonth[0] + "-" + yearMonth[1] + "-" + e.value; // 出力例:2023-12-3
+        const date = yearMonth[0] + "-" + yearMonth[1] + "-" + e.innerText; // 出力例:2023-12-3
         const MONTH = yearMonth[1];
-        const DAY = e.value;
-        console.log(date);
+        const DAY = e.innerText;
         // タスク一覧までページをスクロール
         document.getElementById("task-management").scrollIntoView({
           behavior: "smooth",
