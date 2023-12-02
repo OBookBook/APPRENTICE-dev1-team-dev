@@ -3,6 +3,10 @@
  */
 class TwitterShare {
   /**
+   * //////////////////////// //////////////////////// //////////////////////// //////////////////////// //////////////////////// ////////////////////////
+   * Note: 文字数超過して投稿 or 空文字で投稿 バックエンド的には投稿できてないですが 、JSはOKを返しますこれバグです、混乱しないでね。。。
+   * //////////////////////// //////////////////////// //////////////////////// //////////////////////// //////////////////////// ////////////////////////
+   *
    * ツイート内容を入力するダイアログを開きます。
    * @returns {void}
    */
@@ -12,8 +16,8 @@ class TwitterShare {
       html: '<textarea id="tweetText" rows="7" cols="45" placeholder="ツイートを入力してください""></textarea>' +
         '<p>文字数: <span id="characterCount">148</span></p>' +
         '<div class="btn-container">' +
-        '<button id="js-tweet-text-post">テキスト投稿</button>' +
-        '<button id="js-tweet-textImage-post">テキスト画像投稿</button>' +
+        '<button id="js-tweet-text-post">Xに投稿</button>' +
+        // '<button id="js-tweet-textImage-post">テキスト画像投稿</button>' +
         '</div>',
       showCloseButton: true,
       showConfirmButton: false,
@@ -23,7 +27,7 @@ class TwitterShare {
     });
       document.getElementById('tweetText').addEventListener('input', this.countCharacters);
       document.getElementById('js-tweet-text-post').addEventListener('click', this.shareText);
-      document.getElementById('js-tweet-textImage-post').addEventListener('click', this.shareTextAndImage);
+      // document.getElementById('js-tweet-textImage-post').addEventListener('click', this.shareTextAndImage);
   }
 
   /**
@@ -65,10 +69,12 @@ class TwitterShare {
   }
 
   /**
+   * @todo
+   * [実装不可能] 2023/12/02 Twitter API v2で画像投稿のエンドポイントがcomming soon
+   * https://developer.twitter.com/en/docs/twitter-api/migrate/twitter-api-endpoint-map
    * テキストと画像投稿のイベント処理
-   * @returns {void}
    */
   shareTextAndImage() {
-    Swal.fire('エラー', 'テキストと画像の投稿に失敗しました', 'error');
+    //
   }
 }
