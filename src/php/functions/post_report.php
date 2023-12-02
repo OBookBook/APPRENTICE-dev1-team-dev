@@ -1,5 +1,6 @@
 <?php
 require_once './../classes/Database.php';
+require_once './../classes/ChatGPT.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 $userId = $data['userId'];
@@ -16,15 +17,20 @@ try {
 
 function insertReport($userId, $reflectionComment, $studyHours)
 {
-    // TODO: ダミーデータを作成してai_commentに挿入する 実装次第chatGPTのoutputに変更
-    $dummyAIComment = 'AIによるコメントはまだ利用できません。';
     $db = new Database();
     $conn = $db->connect();
+
+    $generator = new ChatGPT();
+    $res = $generator->generateText($reflectionComment);
+    $res_trimed = trim($res);
+    $aiComment = preg_replace('/\s+/', ' ', $res_trimed);
+
+    // $aiComment = "ダミー";
 
     $stmt = $conn->prepare("INSERT INTO reports (user_id, reflection_comment, ai_comment, submitted_date, study_hours) VALUES (:userId, :reflectionComment, :aiComment, CURDATE(), :studyHours)");
     $stmt->bindParam(':userId', $userId);
     $stmt->bindParam(':reflectionComment', $reflectionComment);
-    $stmt->bindParam(':aiComment', $dummyAIComment);
+    $stmt->bindParam(':aiComment', $aiComment);
     $stmt->bindParam(':studyHours', $studyHours);
     $stmt->execute();
 
