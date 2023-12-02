@@ -4,6 +4,14 @@
         "phpunit/phpunit": "*",
         "vlucas/phpdotenv": "^5.5"
     },
+    "require": {
+        "abraham/twitteroauth": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+        "Abraham\\TwitterOAuth\\": "src"
+        }
+    },
     "scripts": {
         "phpcs": "./vendor/bin/phpcs --standard=phpcs.xml"
     }
