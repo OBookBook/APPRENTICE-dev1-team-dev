@@ -9,6 +9,7 @@ function getFooter()
   <script src="./../../js/libs/Clipboard.js"></script>
   <script src="./../../js/libs/TwitterShare.js"></script>
   <script src="./../../js/libs/ReportDateFormatter.js"></script>
+  <script src="./../../js/libs/TextAnimator.js"></script>
   <script src="../../js/main.js" type="module"></script>
   <footer>
     <small>&copy;2023 keep up</small>

@@ -40,6 +40,18 @@ $timeSelectorBox = new TimeSelectorBox();
         </ul>
       </div>
     </div>
+    <p>-------------------------------------------------------</p>
+    <p id="js-text-answer" class="js-aiText-hidden">
+      【AIからのコメント】
+      Ajaxで取得してきた、本日の実績AIコメントを表示して頂けたら、以下、id属性とclass属性をつけて下さい。id="js-text-answer" class="js-aiText-hidden"。textarea要素をフォーカスアウトしたら、イベントが発火して登録、更新APIが走ります。
+      今日の日報が存在しない場合は新規登録。
+      今日の日報が存在する場合は更新。
+      また、チャットGPTからのコメントが登録、更新するごとに走るようになってますので、リアルタイム感がでます。
+
+      イベントをフォーカスアウトにしたので、submitボタンは削除しました。
+
+    </p>
+    <p>-------------------------------------------------------</p>
     <form id="reportForm">
       <label for="reflectionComment">本日の振り返りを記入</label>
       <textarea id="reflectionComment" name="reflectionComment"></textarea><br>
@@ -47,7 +59,6 @@ $timeSelectorBox = new TimeSelectorBox();
       <select id="studyHours" name="studyHours">
         <?php echo $timeSelectorBox->generateOptions(); ?>
       </select>
-      <input type="submit" value="Submit">
     </form>
     <button id="js-captureGet-btn">日報ダウンロード</button>
     <button id="js-copy-btn">コピペボタン</button>
