@@ -227,13 +227,14 @@ export class Calendar {
     console.log(reflectionComment);
 
     const REPORT_SECTION = document.querySelector("#js-capture");
+    const [procStudyHours] = studyHours.split(':').map(Number);// 書式を修正 10:00:00 → 10 にしました。iwamoto
 
     REPORT_SECTION.innerHTML = `
     <p class="study_hours">
       <span class="material-symbols-outlined">alarm</span>`;
     if (studyHours) {
       REPORT_SECTION.innerHTML += `
-      <span>学習時間 ${studyHours} 時間</span>
+      <span>学習時間 ${procStudyHours} 時間</span>
         </p>
         <ul>`;
     } else {

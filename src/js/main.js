@@ -1,4 +1,4 @@
-import { Calendar } from "./Calendar.js";
+import { Calendar } from "./calendar.js";
 
 const cal = new Calendar();
 cal.createCalendar();
@@ -10,7 +10,7 @@ cal.showTodaysContents();
 // 本日の日報を端末にダウンロード
 const screenshot = new Screenshot();
 document.getElementById("js-captureGet-btn").addEventListener("click", function () {
-  screenshot.get();
+  screenshot.get("js-capture", "js-capture-2");
 });
 
 // 本日の実績textarea要素にてフォーカスが外れた際にイベントが発火します。
