@@ -136,7 +136,7 @@ export class Calendar {
         let report = response.data.report;
 
         this.createList(taskList, month, day, date);
-        // this.createReport(report, taskList);
+        this.createReport(report, taskList);
       })
       .catch((error) => {
         console.log(error);
@@ -238,31 +238,62 @@ export class Calendar {
     newTask.addNewTask(form, date);
   }
 
-  // createReport(report, taskList) {
-  //   console.log(report);
-  //   console.log(taskList);
-  //   let submittedDate = report.submitted_date;
-  //   let studyHours = report.study_hours;
-  //   let taskList =
+  createReport(report, taskList) {
+    console.log(report);
+    console.log(taskList);
+    let studyHours = report.study_hours;
+    let aiComment = report.ai_comment;
+    let reflectionComment = report.reflection_comment;
+    console.log(studyHours);
+    console.log(aiComment);
+    console.log(reflectionComment);
 
-  //   let section = querySelector();
+    const REPORT_SECTION = document.querySelector("#js-capture");
 
-  //   section,innerHTML =
-  //   `<div id="copyTarget">
-  //   <h3>本日の実績</h3>
-  //   <div id="js-capture">
-  //     <h1>📅 日付:11 月 26 日(日)</h1>
-  //     <p>⌚ 学習時間 10 時間</p>
-  //     <ul>
-  //       <li>✅ ${taskName}</li>
-  //       <li>✅ QUEST 24 : ブラウザの仕組みを説明できる(advanced) (完了)</li>
-  //       <li>✅ 技術記事 : Web ブラウザの仕組み (提出完了)</li>
-  //       <li>✅ 提出クエスト : React+TypeScript 実装 (完了)</li>
-  //       <li>✅ チーム開発準備 Docker : Xdebug 環境構築 (完了)</li>
-  //       <li>✅ 本 : これからはじめる React 実践入門</li>
-  //       <p>【明日】AtCoder、チーム開発実装!!</p>
-  //     </ul>
-  //   </div>
-  // </div>;
-  // }
+    REPORT_SECTION.innerHTML = `
+    <p class="study_hours">
+      <span class="material-symbols-outlined">alarm</span>`;
+    if (studyHours) {
+      REPORT_SECTION.innerHTML += `
+      <span>学習時間 ${studyHours} 時間</span>
+        </p>
+        <ul>`;
+    } else {
+      REPORT_SECTION.innerHTML += `
+      <span>学習時間____時間</span>
+        </p>
+        <ul>`;
+    }
+    if (taskList.length) {
+      for (let i = 0; i < taskList.length; i++) {
+        REPORT_SECTION.innerHTML += `
+      <li>`;
+        if (taskList[i].completion_status) {
+          REPORT_SECTION.innerHTML += `
+          <span class="material-symbols-outlined">priority</span>`;
+        } else {
+          REPORT_SECTION.innerHTML += `
+          <span class="material-symbols-outlined">dangerous</span>`;
+        }
+        REPORT_SECTION.innerHTML += `
+        <span>${taskList[i].task_name}</span>
+      </li>`;
+      }
+    }
+    if (reflectionComment) {
+      REPORT_SECTION.innerHTML += `
+        <div class="memo">${reflectionComment}</div>
+      </ul>`;
+    } else {
+      REPORT_SECTION.innerHTML += `
+        <div class="memo"></div>
+      </ul>`;
+    }
+
+    const AI_COMMENT = document.querySelector("#js-text-answer");
+
+    if (aiComment) {
+      AI_COMMENT.innerHTML = aiComment;
+    }
+  }
 }

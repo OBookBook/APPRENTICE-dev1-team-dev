@@ -31,7 +31,6 @@ $timeSelectorBox = new TimeSelectorBox();
       <div id="copyTarget">
         <h2><span>本日の実績</span></h2>
         <div id="js-capture">
-          <!-- <h1>📅 日付:11 月 26 日(日)</h1> -->
           <p class="study_hours">
             <span class="material-symbols-outlined">alarm</span>
             <span>学習時間 10 時間</span>
@@ -39,44 +38,43 @@ $timeSelectorBox = new TimeSelectorBox();
           <ul>
             <li>
               <span class="material-symbols-outlined">priority</span>
-              <span>AtCoder Problems ABC317 : C 問題</span>
+              <span><!--AtCoder Problems ABC317 : C 問題--></span>
             </li>
             <li>
               <span class="material-symbols-outlined">priority</span>
-              <span>QUEST 24 : ブラウザの仕組みを説明できる(advanced)</span>
+              <span><!--QUEST 24 : ブラウザの仕組みを説明できる(advanced)--></span>
             </li>
             <li>
               <span class="material-symbols-outlined">priority</span>
-              <span>技術記事 : Web ブラウザの仕組み</span>
+              <span><!--技術記事 : Web ブラウザの仕組み--></span>
             </li>
             <li>
               <span class="material-symbols-outlined">dangerous</span>
-              <span>提出クエスト : React+TypeScript 実装</span>
+              <span><!--提出クエスト : React+TypeScript 実装--></span>
             </li>
             <li>
               <span class="material-symbols-outlined">priority</span>
-              <span>チーム開発準備 Docker : Xdebug 環境構築</span>
+              <span><!--チーム開発準備 Docker : Xdebug 環境構築--></span>
             </li>
             <li>
               <span class="material-symbols-outlined">priority</span>
-              <span>本 : これからはじめる React 実践入門</span>
+              <span><!--本 : これからはじめる React 実践入門--></span>
             </li>
-            <div class="memo">【明日】AtCoder、チーム開発実装!!</div>
+            <div class="memo"><!--【明日】AtCoder、チーム開発実装!!--></div>
           </ul>
         </div>
       </div>
       <div>
         <span class="material-symbols-outlined ai">smart_toy</span>
         <div id="js-text-answer" class="js-aiText-hidden">
-          Ajaxで取得してきた、本日の実績AIコメントを表示して頂けたら、以下、id属性とclass属性をつけて下さい。id="js-text-answer" class="js-aiText-hidden"。textarea要素をフォーカスアウトしたら、イベントが発火して登録、更新APIが走ります。
+          <!-- Ajaxで取得してきた、本日の実績AIコメントを表示して頂けたら、以下、id属性とclass属性をつけて下さい。id="js-text-answer" class="js-aiText-hidden"。textarea要素をフォーカスアウトしたら、イベントが発火して登録、更新APIが走ります。
           今日の日報が存在しない場合は新規登録。
           今日の日報が存在する場合は更新。
           また、チャットGPTからのコメントが登録、更新するごとに走るようになってますので、リアルタイム感がでます。
 
-          イベントをフォーカスアウトにしたので、submitボタンは削除しました。
+          イベントをフォーカスアウトにしたので、submitボタンは削除しました。 -->
         </div>
       </div>
-
       <form id="reportForm">
         <div class="reflection-wrapper">
           <div>
