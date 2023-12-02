@@ -11,6 +11,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN apt-get update && \
   apt-get install -y sudo git mariadb-client \
   && docker-php-ext-install pdo_mysql
+
+# curl パッケージをインストールして有効化
+RUN apt-get install -y libcurl4-openssl-dev && \
+  docker-php-ext-install curl
+
 # Composerの設定
 RUN echo 'export PATH="$PATH:/root/.composer/vendor/bin"' >> /root/.bashrc
 # Composerキャッシュのクリア
