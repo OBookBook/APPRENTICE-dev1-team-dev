@@ -2,11 +2,13 @@
  * 画面のスクリーンショットをキャプチャおよび取得するクラスです。
  */
 class Screenshot {
-  /**
-   * 画面のスクリーンショットを取得し、ダウンロードします。
-   */
-  get() {
-    const elementToCapture = document.getElementById('js-capture');
+  get(id1, id2) {
+    let elementToCapture = document.getElementById(id1);
+    let elementToCapture2 = document.getElementById(id2);
+
+    // elementToCapture2 の内容を elementToCapture の中に結合する
+    elementToCapture.appendChild(elementToCapture2);
+
     elementToCapture.classList.add('js-capture-style');
 
     const today = new Date();

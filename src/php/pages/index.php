@@ -64,7 +64,7 @@ $timeSelectorBox = new TimeSelectorBox();
           </ul>
         </div>
       </div>
-      <div>
+      <div id="js-capture-2">
         <span class="material-symbols-outlined ai">smart_toy</span>
         <div id="js-text-answer" class="js-aiText-hidden js-aiText-animation">
           <!-- Ajaxで取得してきた、本日の実績AIコメントを表示して頂けたら、以下、id属性とclass属性をつけて下さい。id="js-text-answer" class="js-aiText-hidden"。textarea要素をフォーカスアウトしたら、イベントが発火して登録、更新APIが走ります。
