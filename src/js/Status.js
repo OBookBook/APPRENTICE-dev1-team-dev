@@ -6,9 +6,6 @@ export class Status {
   };
 
   addCheckStatusListener(checkbox) {
-    console.log("change");
-    console.log(checkbox);
-
     checkbox.addEventListener("change", function () {
       let isChecked = this.checked;
       let taskId = this.name;

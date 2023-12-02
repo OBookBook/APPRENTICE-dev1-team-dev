@@ -134,7 +134,7 @@ export class Calendar {
         let report = response.data.report;
 
         this.createList(taskList, month, day, date);
-        // this.createReport(report);
+        this.createReport(report, taskList);
       })
       .catch((error) => {
         console.log(error);
@@ -214,5 +214,70 @@ export class Calendar {
     status.changeStatus(checkbox);
     unnecessaryTask.deleteTask(deleteForms);
     newTask.addNewTask(form, date);
+  }
+
+  createReport(report, taskList) {
+    console.log(report);
+    console.log(taskList);
+    let studyHours = report.study_hours;
+    let aiComment = report.ai_comment;
+    let reflectionComment = report.reflection_comment;
+    console.log(studyHours);
+    console.log(aiComment);
+    console.log(reflectionComment);
+
+    const REPORT_SECTION = document.querySelector("#js-capture");
+
+    REPORT_SECTION.innerHTML = `
+    <p class="study_hours">
+      <span class="material-symbols-outlined">alarm</span>`;
+    if (studyHours) {
+      REPORT_SECTION.innerHTML += `
+      <span>学習時間 ${studyHours} 時間</span>
+        </p>
+        <ul>`;
+    } else {
+      REPORT_SECTION.innerHTML += `
+      <span>学習時間____時間</span>
+        </p>
+        <ul>`;
+    }
+    if (taskList.length) {
+      for (let i = 0; i < taskList.length; i++) {
+        REPORT_SECTION.innerHTML += `
+      <li>`;
+        if (taskList[i].completion_status) {
+          REPORT_SECTION.innerHTML += `
+          <span class="material-symbols-outlined">priority</span>`;
+        } else {
+          REPORT_SECTION.innerHTML += `
+          <span class="material-symbols-outlined">dangerous</span>`;
+        }
+        REPORT_SECTION.innerHTML += `
+        <span>${taskList[i].task_name}</span>
+      </li>`;
+      }
+    }
+    if (reflectionComment) {
+      REPORT_SECTION.innerHTML += `
+        <div class="memo">${reflectionComment}</div>
+      </ul>`;
+    } else {
+      REPORT_SECTION.innerHTML += `
+        <div class="memo"></div>
+      </ul>`;
+    }
+
+    const AI_COMMENT = document.querySelector("#js-text-answer");
+
+    if (aiComment) {
+      AI_COMMENT.innerHTML = aiComment;
+      // AIアニメーションの処理ここにいれさせて頂きました。
+      setTimeout(function() {
+      const animator = new TextAnimator('js-aiText-animation');
+    }, 1500); // 3000ミリ秒 = 3秒
+    }else{
+      AI_COMMENT.innerHTML = "";
+    }
   }
 }
