@@ -1,9 +1,12 @@
 "use strict";
 
-import { toggleClassToTaskList } from "./createNewTask.js";
-import { changeStatus } from "./changeStatus.js";
-import { deleteTask } from "./deleteTask.js";
-import { showNewTask } from "./createNewTask.js";
+import { NewTask } from "./NewTask.js";
+import { Status } from "./Status.js";
+import { UnnecessaryTask } from "./UnnecessaryTask.js";
+
+let newTask = new NewTask();
+let status = new Status();
+let unnecessaryTask = new UnnecessaryTask();
 
 export class Calendar {
   today = new Date(); //今日の日付
@@ -124,7 +127,7 @@ export class Calendar {
     let userId = 1; // 仮にユーザー１とする
 
     return axios
-      .post("http://localhost:9080/src/php/functions/ShowTasks.php", {
+      .post("http://localhost:9080/src/php/functions/ExistingTask.php", {
         userId: userId,
         execution_date: date,
       })
@@ -148,6 +151,7 @@ export class Calendar {
     LIST_TITLE.innerText = `${month}月${day}日のタスク一覧`;
 
     if (taskList.length) {
+      // 登録されているリストの表示
       for (let i = 0; i < taskList.length; i++) {
         UL_OF_TASK_LIST.innerHTML += `
       <li class="task-list">
@@ -174,6 +178,7 @@ export class Calendar {
       }
     }
 
+    // タスク追加欄の表示
     UL_OF_TASK_LIST.innerHTML += `
       <li class="task-list list_to_add_task">
       <form class="add_task_form">
@@ -188,12 +193,12 @@ export class Calendar {
     const ADD_TASK_BTN = document.querySelector(".add_task_btn");
     const ADD_TASK_BTN_INNER = document.querySelector(".add_task_btn_inner");
     const FEED_BACK = document.querySelector(".feed_back");
-
     const CHECKBOX = document.querySelectorAll(".checkbox");
     const DELETE_FORMS = document.querySelectorAll(".delete_form");
-
     const FORM = document.querySelector(".add_task_form");
+    console.log(DELETE_FORMS);
 
+    // 生成したHTMLに各イベントリスナー設置
     this.setListeners(
       INPUT,
       ADD_TASK_BTN,
@@ -204,31 +209,32 @@ export class Calendar {
       FORM,
       date
     );
+    console.log(DELETE_FORMS);
   }
 
+  // 今日のタスク一覧表示
   showTodaysContents() {
-    const TODAY = new Date(); //今日の日付
+    const TODAY = new Date();
     const MONTH = TODAY.getMonth() + 1;
     const DAY = TODAY.getDate();
-    const DATE = TODAY.getFullYear() + "-" + MONTH + "-" + DAY; // 出力例:2023-12-3
+    const DATE = TODAY.getFullYear() + "-" + MONTH + "-" + DAY;
     console.log();
     this.showContents(DATE, MONTH, DAY);
   }
 
   setListeners(
-    INPUT,
-    ADD_TASK_BTN,
-    ADD_TASK_BTN_INNER,
-    FEED_BACK,
-    CHECKBOX,
-    DELETE_FORMS,
-    FORM,
+    input,
+    addTaskBtn,
+    addTaskBtnInner,
+    feedBack,
+    checkbox,
+    deleteForms,
+    form,
     date
   ) {
-    console.log(INPUT, ADD_TASK_BTN, ADD_TASK_BTN_INNER, FEED_BACK);
-    toggleClassToTaskList(INPUT, ADD_TASK_BTN, ADD_TASK_BTN_INNER, FEED_BACK);
-    changeStatus(CHECKBOX);
-    deleteTask(DELETE_FORMS);
-    showNewTask(FORM, date);
+    newTask.toggleClassToTaskList(input, addTaskBtn, addTaskBtnInner, feedBack);
+    status.changeStatus(checkbox);
+    unnecessaryTask.deleteTask(deleteForms);
+    newTask.addNewTask(form, date);
   }
 }
