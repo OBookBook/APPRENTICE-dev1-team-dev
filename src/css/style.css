@@ -185,7 +185,7 @@ nav ul li {
 }
 
 #week td:hover:not(.disabled) {
-  background-color: #E7D9D8;
+  background-color: #f7f0f0;
   cursor: pointer;
 }
 
@@ -198,7 +198,7 @@ nav ul li {
 }
 
 .selected {
-  background-color: #E7D9D8;
+  background-color: #f7f0f0;
 }
 
 .disabled {

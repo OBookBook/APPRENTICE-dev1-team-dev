@@ -15,7 +15,8 @@ export class CreatePieChart {
               labels: ["完了", "未完了"],
               datasets: [
                 {
-                  backgroundColor: ["#FFAFAC", "rgba(0, 0, 0, 0)"],
+                  backgroundColor: ["#b4e6ff", "rgba(0, 0, 0, 0)"],
+                  borderWidth: 0,
                   data: res[i],
                 },
               ],
@@ -28,6 +29,7 @@ export class CreatePieChart {
                 tooltip: {
                   enabled: false,
                 },
+                hover: { mode: null },
               },
             },
           });
