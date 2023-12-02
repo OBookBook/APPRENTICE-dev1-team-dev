@@ -33,7 +33,7 @@ class ChatGPT
         // リクエストデータ
         $data = array(
             'prompt' => $prompt,
-            'max_tokens' => 100
+            'max_tokens' => 30
         );
 
         // JSON形式に変換
