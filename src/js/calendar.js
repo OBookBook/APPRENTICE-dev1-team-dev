@@ -32,25 +32,21 @@ export class Calendar {
         for (let j = 0; j < 7; j++) {
           if (i == 0 && j < firstDate.getDay()) {
             // 今月分の空白を埋める
-            calendarHtml +=
-              '<td class="disabled">' +
-              (lastDateLastMonth - firstDate.getDay() + j + 1) +
-              "</td>";
+            calendarHtml += '<td class="disabled">' + (lastDateLastMonth - firstDate.getDay() + j + 1) + "</td>";
           } else if (dayCount > lastDate) {
             // 来月分の空白を埋める
-            calendarHtml +=
-              '<td class="disabled">' + (dayCount - lastDate) + "</td>";
+            calendarHtml += '<td class="disabled">' + (dayCount - lastDate) + "</td>";
             dayCount++;
           } else {
             // 当日の日付を選択した状態にする
-            if (
-              this.today.getFullYear() == year &&
-              this.today.getMonth() == month &&
-              this.today.getDate() == dayCount
-            ) {
+            if (this.today.getFullYear() == year && this.today.getMonth() == month && this.today.getDate() == dayCount) {
               calendarHtml += '<td class="date selected">' + dayCount + "</td>";
+              // const date = `${year}-${month + 1}-${dayCount}`;
+              // dateArr.push(date);
             } else {
               calendarHtml += '<td class="date">' + dayCount + "</td>";
+              // const date = `${year}-${month + 1}-${dayCount}`;
+              // dateArr.push(date);
             }
             dayCount++;
           }
@@ -103,9 +99,7 @@ export class Calendar {
           selected.classList.remove("selected");
         }
         e.classList.add("selected");
-        const yearMonth = document
-          .getElementById("year-month")
-          .innerHTML.split("/");
+        const yearMonth = document.getElementById("year-month").innerHTML.split("/");
         const date = yearMonth[0] + "-" + yearMonth[1] + "-" + e.innerHTML; // 出力例:2023-12-3
         const MONTH = yearMonth[1];
         const DAY = e.innerHTML;
@@ -199,16 +193,7 @@ export class Calendar {
     console.log(DELETE_FORMS);
 
     // 生成したHTMLに各イベントリスナー設置
-    this.setListeners(
-      INPUT,
-      ADD_TASK_BTN,
-      ADD_TASK_BTN_INNER,
-      FEED_BACK,
-      CHECKBOX,
-      DELETE_FORMS,
-      FORM,
-      date
-    );
+    this.setListeners(INPUT, ADD_TASK_BTN, ADD_TASK_BTN_INNER, FEED_BACK, CHECKBOX, DELETE_FORMS, FORM, date);
     console.log(DELETE_FORMS);
   }
 
@@ -222,16 +207,7 @@ export class Calendar {
     this.showContents(DATE, MONTH, DAY);
   }
 
-  setListeners(
-    input,
-    addTaskBtn,
-    addTaskBtnInner,
-    feedBack,
-    checkbox,
-    deleteForms,
-    form,
-    date
-  ) {
+  setListeners(input, addTaskBtn, addTaskBtnInner, feedBack, checkbox, deleteForms, form, date) {
     newTask.toggleClassToTaskList(input, addTaskBtn, addTaskBtnInner, feedBack);
     status.changeStatus(checkbox);
     unnecessaryTask.deleteTask(deleteForms);
