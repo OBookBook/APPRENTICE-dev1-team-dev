@@ -19,10 +19,12 @@ class ReportFormHandler {
      * @returns {Object} リクエストデータのオブジェクト
      */
     createRequestData = () => {
+        const formatter = new ReportDateFormatter('year-month', 'task-management');
         return {
             userId: 1,
             reflectionComment: document.getElementById("reflectionComment").value,
-            studyHours: document.getElementById("studyHours").value
+            studyHours: document.getElementById("studyHours").value,
+            submittedDate: formatter.getFormattedDate()
         };
     };
 

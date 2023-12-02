@@ -64,6 +64,18 @@ $timeSelectorBox = new TimeSelectorBox();
           </ul>
         </div>
       </div>
+      <p>-------------------------------------------------------</p>
+      <p id="js-text-answer" class="js-aiText-hidden">
+        【AIからのコメント】
+        Ajaxで取得してきた、本日の実績AIコメントを表示して頂けたら、以下、id属性とclass属性をつけて下さい。id="js-text-answer" class="js-aiText-hidden"。textarea要素をフォーカスアウトしたら、イベントが発火して登録、更新APIが走ります。
+        今日の日報が存在しない場合は新規登録。
+        今日の日報が存在する場合は更新。
+        また、チャットGPTからのコメントが登録、更新するごとに走るようになってますので、リアルタイム感がでます。
+
+        イベントをフォーカスアウトにしたので、submitボタンは削除しました。
+
+      </p>
+      <p>-------------------------------------------------------</p>
       <form id="reportForm">
         <div class="reflection-wrapper">
           <div>
