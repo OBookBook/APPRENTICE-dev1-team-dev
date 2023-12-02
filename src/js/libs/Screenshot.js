@@ -1,40 +1,7 @@
 /**
- * HACK: あまりきれいじゃないコード、余裕ができたら綺麗にしますね。
  * 画面のスクリーンショットをキャプチャおよび取得するクラスです。
  */
 class Screenshot {
-  /**
-   * 画面のスクリーンショットをキャプチャして保存します。
-   * @async
-   * @returns {Promise<void>} 画像の保存処理が完了するPromise
-   */
-  async capture() {
-    try {
-      const elementToCapture = document.getElementById('js-capture');
-      elementToCapture.classList.add('js-capture-style');
-
-      // await を追加して Promise を待つ
-      const canvas = await html2canvas(elementToCapture);
-      const imgData = canvas.toDataURL('image/png');
-      const response = await fetch('../../php/functions/post_image.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: `imgData=${encodeURIComponent(imgData)}`
-      });
-
-      if (response.ok) {
-        console.log('画像を保存しました');
-      } else {
-        throw new Error('画像の保存に失敗しました');
-      }
-
-    } catch (error) {
-      console.error('エラー:', error);
-    }
-  }
-
   /**
    * 画面のスクリーンショットを取得し、ダウンロードします。
    */
