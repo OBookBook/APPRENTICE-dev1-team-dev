@@ -9,6 +9,7 @@ getHeader();
 $timeSelectorBox = new TimeSelectorBox();
 ?>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 <main>
   <div id="calendar-wrapper">
     <div id="cal-header">
@@ -64,22 +65,22 @@ $timeSelectorBox = new TimeSelectorBox();
           </ul>
         </div>
       </div>
-      <p>-------------------------------------------------------</p>
-      <p id="js-text-answer" class="js-aiText-hidden">
-        【AIからのコメント】
-        Ajaxで取得してきた、本日の実績AIコメントを表示して頂けたら、以下、id属性とclass属性をつけて下さい。id="js-text-answer" class="js-aiText-hidden"。textarea要素をフォーカスアウトしたら、イベントが発火して登録、更新APIが走ります。
-        今日の日報が存在しない場合は新規登録。
-        今日の日報が存在する場合は更新。
-        また、チャットGPTからのコメントが登録、更新するごとに走るようになってますので、リアルタイム感がでます。
+      <div>
+        <span class="material-symbols-outlined ai">smart_toy</span>
+        <div id="js-text-answer" class="js-aiText-hidden">
+          Ajaxで取得してきた、本日の実績AIコメントを表示して頂けたら、以下、id属性とclass属性をつけて下さい。id="js-text-answer" class="js-aiText-hidden"。textarea要素をフォーカスアウトしたら、イベントが発火して登録、更新APIが走ります。
+          今日の日報が存在しない場合は新規登録。
+          今日の日報が存在する場合は更新。
+          また、チャットGPTからのコメントが登録、更新するごとに走るようになってますので、リアルタイム感がでます。
 
-        イベントをフォーカスアウトにしたので、submitボタンは削除しました。
+          イベントをフォーカスアウトにしたので、submitボタンは削除しました。
+        </div>
+      </div>
 
-      </p>
-      <p>-------------------------------------------------------</p>
       <form id="reportForm">
         <div class="reflection-wrapper">
           <div>
-            <label for="reflectionComment">本日の振り返りを記入</label>
+            <label for="reflectionComment">振り返り Memo</label>
             <textarea id="reflectionComment" class="js-aiText-hidden" name="reflectionComment"></textarea><br>
           </div>
           <div>

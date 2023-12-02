@@ -39,6 +39,7 @@ p, h1, h2, h3, h4, h5, h6 {
   --noto-sans-jp: 'Noto Sans JP', sans-serif;
   --text-color: #645353;
   --border-color: #BAA;
+  --border-color-rgb: 100, 83, 83;
   --main-color: #FFAFAC;
   --main-color-rgb: 255, 175, 172;
   --accent-color: #E5F3FF;
@@ -200,7 +201,7 @@ nav ul li {
 
 .bottom-wrapper section {
   width: 45vw;
-  max-width: 500px;
+  /* max-width: 500px; */
   padding: 2rem;
   margin: 3rem auto;
 }
@@ -310,7 +311,7 @@ nav ul li {
 /******************* report *******************/
 #report {
   background-color: #fff;
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(var(--border-color-rgb), .3);
 }
 
 #report h2 {
@@ -345,6 +346,15 @@ nav ul li {
 }
 
 #report .study_hours .material-symbols-outlined {
+  color: #9dd1fd;
+}
+
+#js-text-answer {
+  min-height: 10rem;
+  margin-bottom: 2rem;
+}
+
+#report .material-symbols-outlined.ai {
   color: #9dd1fd;
 }
 
