@@ -15,7 +15,7 @@ getHeader();
     <div id="calendar"></div>
   </div>
   <section id="task-management">
-    <h2><span>〇月〇日のタスク一覧</span></h2>
+    <h2><span>タスク一覧</span></h2>
     <ul class="task-lists">
     </ul>
   </section>

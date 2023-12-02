@@ -1,5 +1,7 @@
 <?php
 
+use SebastianBergmann\Environment\Console;
+
 require_once(__DIR__ . '/../functions/connectSql.php');
 
 function validate($inputTask)
@@ -14,7 +16,7 @@ function validate($inputTask)
 }
 
 
-function insertTask($userId, $date, $taskName)
+function insertTask($userId, $execution_date, $taskName)
 {
   $inputTask = ($taskName);
   $error = validate($inputTask);
@@ -44,7 +46,7 @@ function insertTask($userId, $date, $taskName)
 
     $stmt = $dbh->prepare($query);
     $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-    $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+    $stmt->bindParam(':date', $execution_date, PDO::PARAM_STR);
     $stmt->bindParam(':taskName', $inputTask, PDO::PARAM_STR);
     $stmt->execute();
 
@@ -57,7 +59,7 @@ function insertTask($userId, $date, $taskName)
 
     $stmt2 = $dbh->prepare($query);
     $stmt2->bindParam(':userId', $userId, PDO::PARAM_INT);
-    $stmt2->bindParam(':date', $date, PDO::PARAM_STR);
+    $stmt2->bindParam(':date', $execution_date, PDO::PARAM_STR);
     $stmt2->bindParam(':taskName', $inputTask, PDO::PARAM_STR);
     $stmt2->execute();
 
@@ -91,7 +93,8 @@ if (!empty($rawData)) {
 
     if (array_key_exists('newTask', $jsonData)) {
       $taskName = $jsonData['newTask'];
-      insertTask(1, '2023-11-20', $taskName);
+      $execution_date = $jsonData['execution_date'];
+      insertTask(1, $execution_date, $taskName);
     }
   }
   echo json_encode(["error" => "データがありません"]);

@@ -1,13 +1,12 @@
-export const deleteTask = () => {
-  const DELETE_FORMS = document.querySelectorAll(".delete_form");
-
-  for (let delete_form of DELETE_FORMS) {
+export const deleteTask = (forms) => {
+  for (let delete_form of forms) {
     addDeleteTaskListener(delete_form);
   }
 };
 
 export function addDeleteTaskListener(delete_form) {
   delete_form.addEventListener("submit", function (e) {
+    console.log("delete");
     e.preventDefault();
 
     let taskId = this.children[0].value;

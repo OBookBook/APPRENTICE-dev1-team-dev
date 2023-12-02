@@ -1,4 +1,10 @@
 "use strict";
+
+import { toggleClassToTaskList } from "./createNewTask.js";
+import { changeStatus } from "./changeStatus.js";
+import { deleteTask } from "./deleteTask.js";
+import { showNewTask } from "./createNewTask.js";
+
 export class Calendar {
   today = new Date(); //今日の日付
   displayDate = new Date(this.today.getFullYear(), this.today.getMonth(), 1); // カレンダー表示に使う日付
@@ -98,36 +104,35 @@ export class Calendar {
           .getElementById("year-month")
           .innerHTML.split("/");
         const date = yearMonth[0] + "-" + yearMonth[1] + "-" + e.innerHTML; // 出力例:2023-12-3
+        const MONTH = yearMonth[1];
+        const DAY = e.innerHTML;
         console.log(date);
         // タスク一覧までページをスクロール
         document.getElementById("task-management").scrollIntoView({
           behavior: "smooth",
         });
 
-        this.showContents(date);
+        this.showContents(date, MONTH, DAY);
       });
     });
   }
 
   // タスク一覧とレポートの表示
-  showContents(execution_date) {
+  showContents(date, month, day) {
     const UL_OF_TASK_LIST = document.querySelector(".task-lists");
     UL_OF_TASK_LIST.innerHTML = "";
     let userId = 1; // 仮にユーザー１とする
 
-    console.log("userId:" + userId);
-    console.log("execution_date:" + execution_date);
-
     return axios
       .post("http://localhost:9080/src/php/functions/ShowTasks.php", {
         userId: userId,
-        execution_date: execution_date,
+        execution_date: date,
       })
       .then((response) => {
         let taskList = response.data.taskList;
         let report = response.data.report;
 
-        this.createList(taskList);
+        this.createList(taskList, month, day, date);
         // this.createReport(report);
       })
       .catch((error) => {
@@ -136,8 +141,12 @@ export class Calendar {
   }
 
   // タスク一覧のHTML生成
-  createList(taskList) {
+  createList(taskList, month, day, date) {
     const UL_OF_TASK_LIST = document.querySelector(".task-lists");
+    const LIST_TITLE = UL_OF_TASK_LIST.previousElementSibling.children[0];
+
+    LIST_TITLE.innerText = `${month}月${day}日のタスク一覧`;
+
     if (taskList.length) {
       for (let i = 0; i < taskList.length; i++) {
         UL_OF_TASK_LIST.innerHTML += `
@@ -152,7 +161,7 @@ export class Calendar {
           <input type="text" name="delete_task_id" value="${taskList[i].task_id}" hidden>
           <label>
             <span class="delete-icon material-symbols-outlined">delete</span>
-            <button type="submit" name="delete-btn" hidden>
+            <button type="submit" name="delete-btn" hidden></button>
           </label>
         </form>
       </li>`;
@@ -163,26 +172,63 @@ export class Calendar {
           lastCheckbox.setAttribute("checked", true);
         }
       }
-
-      UL_OF_TASK_LIST.innerHTML += `
-    <li class="task-list list_to_add_task">
-    <form class="add_task_form">
-      <input type="hidden" name="form_id" value="input_task">
-      <input class="input_task" type="text" name="input_task" maxlength="255" required>
-      <button class="add_task_btn disabled" type="submit" disabled><span class="add_task_btn_inner">＋</span></button>
-    </form>
-  </li>
-  <div class="feed_back"></div>`;
-    } else {
-      UL_OF_TASK_LIST.innerHTML += `
-    <li class="task-list list_to_add_task">
-    <form class="add_task_form">
-      <input type="hidden" name="form_id" value="input_task">
-      <input class="input_task" type="text" name="input_task" maxlength="255" required>
-      <button class="add_task_btn disabled" type="submit" disabled><span class="add_task_btn_inner">＋</span></button>
-    </form>
-  </li>
-  <div class="feed_back"></div>`;
     }
+
+    UL_OF_TASK_LIST.innerHTML += `
+      <li class="task-list list_to_add_task">
+      <form class="add_task_form">
+        <input type="hidden" name="form_id" value="input_task">
+        <input class="input_task" type="text" name="input_task" maxlength="255" required>
+        <button class="add_task_btn disabled" type="submit" disabled><span class="add_task_btn_inner">＋</span></button>
+      </form>
+    </li>
+    <div class="feed_back"></div>`;
+
+    const INPUT = document.querySelector(".input_task");
+    const ADD_TASK_BTN = document.querySelector(".add_task_btn");
+    const ADD_TASK_BTN_INNER = document.querySelector(".add_task_btn_inner");
+    const FEED_BACK = document.querySelector(".feed_back");
+
+    const CHECKBOX = document.querySelectorAll(".checkbox");
+    const DELETE_FORMS = document.querySelectorAll(".delete_form");
+
+    const FORM = document.querySelector(".add_task_form");
+
+    this.setListeners(
+      INPUT,
+      ADD_TASK_BTN,
+      ADD_TASK_BTN_INNER,
+      FEED_BACK,
+      CHECKBOX,
+      DELETE_FORMS,
+      FORM,
+      date
+    );
+  }
+
+  showTodaysContents() {
+    const TODAY = new Date(); //今日の日付
+    const MONTH = TODAY.getMonth() + 1;
+    const DAY = TODAY.getDate();
+    const DATE = TODAY.getFullYear() + "-" + MONTH + "-" + DAY; // 出力例:2023-12-3
+    console.log();
+    this.showContents(DATE, MONTH, DAY);
+  }
+
+  setListeners(
+    INPUT,
+    ADD_TASK_BTN,
+    ADD_TASK_BTN_INNER,
+    FEED_BACK,
+    CHECKBOX,
+    DELETE_FORMS,
+    FORM,
+    date
+  ) {
+    console.log(INPUT, ADD_TASK_BTN, ADD_TASK_BTN_INNER, FEED_BACK);
+    toggleClassToTaskList(INPUT, ADD_TASK_BTN, ADD_TASK_BTN_INNER, FEED_BACK);
+    changeStatus(CHECKBOX);
+    deleteTask(DELETE_FORMS);
+    showNewTask(FORM, date);
   }
 }

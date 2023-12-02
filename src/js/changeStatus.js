@@ -1,13 +1,14 @@
-export const changeStatus = () => {
-  let checkboxes = document.querySelectorAll(".checkbox");
-
+export const changeStatus = (checkboxes) => {
+  console.log("changeStatus");
   for (let checkbox of checkboxes) {
     addCheckStatusListener(checkbox);
   }
 };
 
 export function addCheckStatusListener(checkbox) {
+  console.log(checkbox);
   checkbox.addEventListener("change", function () {
+    console.log("addCheckStatus" + checkbox);
     let isChecked = this.checked;
     let taskId = this.name;
 
