@@ -15,11 +15,11 @@ document
     screenshot.get();
   });
 
-// 本日の実績登録イベント
+// 本日の実績textarea要素にてフォーカスが外れた際にイベントが発火します。
 const reportHandler = new ReportFormHandler();
 document
-  .getElementById("reportForm")
-  .addEventListener("submit", reportHandler.handleSubmit);
+  .getElementById("reflectionComment")
+  .addEventListener("blur", reportHandler.handleSubmit);
 
 // コピペクリックイベント
 document.getElementById("js-copy-btn").addEventListener("click", function () {
@@ -34,3 +34,6 @@ document
     const twitterShare = new TwitterShare();
     twitterShare.openDialog();
   });
+
+// 引数で渡した要素の文字が1文字ずつ表示されます。 AIからのコメントで使用
+const animator = new TextAnimator('js-text-answer');
