@@ -294,6 +294,12 @@ export class Calendar {
 
     if (aiComment) {
       AI_COMMENT.innerHTML = aiComment;
+      // AIアニメーションの処理ここにいれさせて頂きました。
+      setTimeout(function() {
+      const animator = new TextAnimator('js-aiText-animation');
+    }, 1500); // 3000ミリ秒 = 3秒
+    }else{
+      AI_COMMENT.innerHTML = "";
     }
   }
 }

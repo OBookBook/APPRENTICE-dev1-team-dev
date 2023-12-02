@@ -34,6 +34,3 @@ document
     const twitterShare = new TwitterShare();
     twitterShare.openDialog();
   });
-
-// 引数で渡した要素の文字が1文字ずつ表示されます。 AIからのコメントで使用
-const animator = new TextAnimator('js-text-answer');
