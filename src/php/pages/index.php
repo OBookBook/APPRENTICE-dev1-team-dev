@@ -1,8 +1,7 @@
 <?php
 require_once(__DIR__ . '/header.php');
 require_once(__DIR__ . '/footer.php');
-require_once(__DIR__ . '/../functions/connectSql.php');
-require_once(__DIR__ . '/../functions/ShowTasks.php');
+require_once(__DIR__ . '/../functions/ConnectionToSql.php');
 require_once(__DIR__ . '/../classes/TimeSelectorBox.php');
 
 getHeader();
@@ -20,7 +19,7 @@ $timeSelectorBox = new TimeSelectorBox();
     <div id="calendar"></div>
   </div>
   <section id="task-management">
-    <h2><span>〇月〇日のタスク一覧</span></h2>
+    <h2><span>タスク一覧</span></h2>
     <ul class="task-lists">
     </ul>
   </section>

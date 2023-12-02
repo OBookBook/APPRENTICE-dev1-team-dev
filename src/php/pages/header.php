@@ -33,8 +33,9 @@ function getHeader()
           </span>
           <div>
             <?php
-            require_once(__DIR__ . '/../functions/connectSql.php');
-            $dbh = connectSql();
+            require_once(__DIR__ . '/../functions/ConnectionToSql.php');
+            $connectionToSql = new ConnectionToSql();
+            $dbh = $connectionToSql->connectSql();
             // 仮に user_id が 1 のユーザーとして実装
             $userId = 1;
             // クエリの実行
