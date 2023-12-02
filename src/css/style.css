@@ -173,6 +173,8 @@ nav ul li {
 }
 
 #week td {
+  font-weight: bold;
+  padding-left: 0.3rem;
   width: 8.7rem;
   height: 7rem;
   border: 2px solid var(--border-color);

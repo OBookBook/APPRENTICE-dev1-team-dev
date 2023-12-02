@@ -8,7 +8,7 @@ import { CreatePieChart } from "./CreatePieChart.js";
 let newTask = new NewTask();
 let status = new Status();
 let unnecessaryTask = new UnnecessaryTask();
-let cpc = new CreatePieChart();
+let createPieChart = new CreatePieChart();
 
 export class Calendar {
   today = new Date(); //今日の日付
@@ -63,7 +63,7 @@ export class Calendar {
     document.getElementById("year-month").innerHTML = year + "/" + (month + 1);
     document.getElementById("calendar").innerHTML = calendarHtml;
 
-    cpc.createMonthPieChart();
+    createPieChart.createMonthlyPieChart(dateArr);
   }
 
   // 曜日テーブルの作成
