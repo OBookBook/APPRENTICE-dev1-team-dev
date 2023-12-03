@@ -3,10 +3,12 @@
 import { NewTask } from "./NewTask.js";
 import { Status } from "./Status.js";
 import { UnnecessaryTask } from "./UnnecessaryTask.js";
+import { CreatePieChart } from "./CreatePieChart.js";
 
 let newTask = new NewTask();
 let status = new Status();
 let unnecessaryTask = new UnnecessaryTask();
+let createPieChart = new CreatePieChart();
 
 export class Calendar {
   today = new Date(); //今日の日付
@@ -23,6 +25,7 @@ export class Calendar {
     const lastDateLastMonth = new Date(year, month, 0).getDate(); //先月最終日
     let dayCount = 1;
     let calendarHtml = this.weekTable;
+    let dateArr = [];
 
     // 日付の作成
     for (let i = 0; i < 6; i++) {
@@ -32,25 +35,21 @@ export class Calendar {
         for (let j = 0; j < 7; j++) {
           if (i == 0 && j < firstDate.getDay()) {
             // 今月分の空白を埋める
-            calendarHtml +=
-              '<td class="disabled">' +
-              (lastDateLastMonth - firstDate.getDay() + j + 1) +
-              "</td>";
+            calendarHtml += '<td class="disabled">' + (lastDateLastMonth - firstDate.getDay() + j + 1) + "</td>";
           } else if (dayCount > lastDate) {
             // 来月分の空白を埋める
-            calendarHtml +=
-              '<td class="disabled">' + (dayCount - lastDate) + "</td>";
+            calendarHtml += '<td class="disabled">' + (dayCount - lastDate) + "</td>";
             dayCount++;
           } else {
             // 当日の日付を選択した状態にする
-            if (
-              this.today.getFullYear() == year &&
-              this.today.getMonth() == month &&
-              this.today.getDate() == dayCount
-            ) {
-              calendarHtml += '<td class="date selected">' + dayCount + "</td>";
+            if (this.today.getFullYear() == year && this.today.getMonth() == month && this.today.getDate() == dayCount) {
+              calendarHtml += '<td class="date selected">' + dayCount + `<div class="chart-wrapper"><canvas  class="chart"></canvas></div></td>`;
+              const date = `${year}-${month + 1}-${dayCount}`;
+              dateArr.push(date);
             } else {
-              calendarHtml += '<td class="date">' + dayCount + "</td>";
+              calendarHtml += '<td class="date">' + dayCount + `<div class="chart-wrapper"><canvas class="chart"></canvas></div></td>`;
+              const date = `${year}-${month + 1}-${dayCount}`;
+              dateArr.push(date);
             }
             dayCount++;
           }
@@ -63,6 +62,8 @@ export class Calendar {
     // カレンダー表示
     document.getElementById("year-month").innerHTML = year + "/" + (month + 1);
     document.getElementById("calendar").innerHTML = calendarHtml;
+
+    createPieChart.createMonthlyPieChart(dateArr);
   }
 
   // 曜日テーブルの作成
@@ -103,13 +104,10 @@ export class Calendar {
           selected.classList.remove("selected");
         }
         e.classList.add("selected");
-        const yearMonth = document
-          .getElementById("year-month")
-          .innerHTML.split("/");
-        const date = yearMonth[0] + "-" + yearMonth[1] + "-" + e.innerHTML; // 出力例:2023-12-3
+        const yearMonth = document.getElementById("year-month").innerHTML.split("/");
+        const date = yearMonth[0] + "-" + yearMonth[1] + "-" + e.innerText; // 出力例:2023-12-3
         const MONTH = yearMonth[1];
-        const DAY = e.innerHTML;
-        console.log(date);
+        const DAY = e.innerText;
         // タスク一覧までページをスクロール
         document.getElementById("task-management").scrollIntoView({
           behavior: "smooth",
@@ -196,20 +194,9 @@ export class Calendar {
     const CHECKBOX = document.querySelectorAll(".checkbox");
     const DELETE_FORMS = document.querySelectorAll(".delete_form");
     const FORM = document.querySelector(".add_task_form");
-    console.log(DELETE_FORMS);
 
     // 生成したHTMLに各イベントリスナー設置
-    this.setListeners(
-      INPUT,
-      ADD_TASK_BTN,
-      ADD_TASK_BTN_INNER,
-      FEED_BACK,
-      CHECKBOX,
-      DELETE_FORMS,
-      FORM,
-      date
-    );
-    console.log(DELETE_FORMS);
+    this.setListeners(INPUT, ADD_TASK_BTN, ADD_TASK_BTN_INNER, FEED_BACK, CHECKBOX, DELETE_FORMS, FORM, date);
   }
 
   // 今日のタスク一覧表示
@@ -222,16 +209,7 @@ export class Calendar {
     this.showContents(DATE, MONTH, DAY);
   }
 
-  setListeners(
-    input,
-    addTaskBtn,
-    addTaskBtnInner,
-    feedBack,
-    checkbox,
-    deleteForms,
-    form,
-    date
-  ) {
+  setListeners(input, addTaskBtn, addTaskBtnInner, feedBack, checkbox, deleteForms, form, date) {
     newTask.toggleClassToTaskList(input, addTaskBtn, addTaskBtnInner, feedBack);
     status.changeStatus(checkbox);
     unnecessaryTask.deleteTask(deleteForms);
