@@ -128,6 +128,11 @@ nav ul li {
 
 
 /******************* calendar *******************/
+#calendar-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
 #cal-header {
   margin-bottom: 10px;
   padding-top: 20px;
@@ -135,8 +140,12 @@ nav ul li {
   justify-content: center;
 }
 
+#cal-header h2{
+  font-size: 2rem;
+}
+
 #cal-header button {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   background: none;
   border:none;
   margin: 0 2em;
@@ -151,13 +160,13 @@ nav ul li {
 
 #calendar table {
   border-collapse: collapse;
-  margin: 0 auto;
 }
 
 #calendar table tbody {
   margin: 0 auto;
   background: #fff;
 }
+
 #day-of-week {
   background-color: var(--main-color);
 }
@@ -167,12 +176,16 @@ nav ul li {
 }
 
 #week td {
+  font-weight: bold;
+  padding-left: 0.3rem;
+  width: 8.7rem;
+  height: 7rem;
   border: 2px solid var(--border-color);
-  padding: 0.5vw 7vw 4vw 0.5vw;
+  vertical-align: top;
 }
 
 #week td:hover:not(.disabled) {
-  background-color: #E7D9D8;
+  background-color: #f7f0f0;
   cursor: pointer;
 }
 
@@ -185,12 +198,21 @@ nav ul li {
 }
 
 .selected {
-  background-color: #E7D9D8;
+  background-color: #f7f0f0;
 }
 
 .disabled {
   opacity: 0.3;
 }
+
+.chart-wrapper {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+
 /******************* calendar *******************/
 
 
