@@ -94,10 +94,11 @@ class ReportInserter
     {
         $aiComment = $this->generateAIComment($reflectionComment); // AIコメントの再生成
 
-        $stmt = $this->conn->prepare("UPDATE reports SET reflection_comment = :reflectionComment, ai_comment = :aiComment WHERE report_id = :reportId");
+        $stmt = $this->conn->prepare("UPDATE reports SET reflection_comment = :reflectionComment, ai_comment = :aiComment, study_hours = :submittedDate  WHERE report_id = :reportId");
         $stmt->bindParam(':reportId', $reportId);
         $stmt->bindParam(':reflectionComment', $reflectionComment);
         $stmt->bindParam(':aiComment', $aiComment);
+        $stmt->bindParam(':submittedDate', $this->studyHours);
         $stmt->execute();
         http_response_code(200);
     }
