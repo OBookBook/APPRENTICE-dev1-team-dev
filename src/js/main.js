@@ -1,4 +1,4 @@
-import { Calendar } from "./calendar.js";
+import { Calendar } from "./Calendar.js";
 
 const cal = new Calendar();
 cal.createCalendar();
